@@ -24,11 +24,12 @@ body {
   border-radius: 10px;
   width: 300px;
   height: auto;
-  background: linear-gradient(
-    to bottom,
-    rgb(255 255 255 / 15%),
-    rgb(0 0 0 / 15%)
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 15%),
+      rgb(0 0 0 / 15%)
+    );
   backdrop-filter: blur(15px);
   padding: 20px;
 }
@@ -221,9 +222,10 @@ body {
   margin-right: 13px;
   margin-left: 13px;
   border: 1px solid rgb(255 255 255 / 20%);
-  background: linear-gradient(
-    to bottom,
-    rgb(255 255 255 / 15%),
-    rgb(0 0 0 / 15%)
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 15%),
+      rgb(0 0 0 / 15%)
+    );
 }
