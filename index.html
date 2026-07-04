@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Weather app</title>
+        <!-- importing fonts from google -->
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link rel="icon" type="image/png" href="asset/image/istockphoto-1164894431-1024x1024.jpg">
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main class="main-container">
+             <header class="search-section">
+            <input type="text" class="search-city" placeholder="search city">
+            <button class="search-btn">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+             </header>
+            <section class="weather-info">
+                <div class="actual-location-date">
+                    <div class="location">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <h4 class="location">Madrid</h4>
+                    </div>
+                    <h5 class="actual-date">thurs 03 july 2026</h5>
+                </div>
+            </section>
+
+            <!--  -->
+            <section class="weather-image">
+                <img src="asset/image/sunny.png" alt="rain-cloud" class="sunny-iamge">
+                <div class="container-info">
+                    <h5 class="temperature">100°C</h5>
+                    <p class="weather-descript">sunny day</p>
+                </div>
+            </section>
+            <section class="additon-info">
+                <div class="humidity-cart">
+                    <span class="material-symbols-outlined">cool_to_dry</span>
+                    <h4 class="humidity">666%</h4>
+                </div>
+               <div class="wind-cart">
+                    <span class="material-symbols-outlined">air</span>
+                    <h4 class="wind-speed">3000 m/s</h4>
+                </div>
+                <div class="light-cart">
+                    <span class="material-symbols-outlined">brightness_5</span>
+                    <h4 class="uv-light">560 UVI</h4>
+                </div>
+            </section>
+            <section class="five-day-weather">
+                <div class="first-day"></div>
+                <div class="first-day"></div>
+                <div class="first-day"></div>
+                <div class="first-day"></div>
+                <div class="first-day"></div>
+            </section>
+        </main>     
+    </body>
+</html>
