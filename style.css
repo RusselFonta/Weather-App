@@ -1,0 +1,220 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url(asset/image/pexels-diva-23-2157852563-35333210.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100dvh;
+  width: 100vw; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-container {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  width: 300px;
+  height: auto;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.15));
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  padding: 20px;
+}
+
+
+.search-section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px; 
+  padding: 4px 8px;
+}
+
+.search-city {
+  flex: 1; 
+  height: 32px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  padding-left: 8px;
+}
+
+.search-city::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+.search-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.material-symbols-outlined {
+  color: white;
+  font-size: 22px; 
+  transition: transform 0.2s ease;
+}
+
+.search-btn:hover .material-symbols-outlined {
+  transform: scale(1.1); 
+}
+
+.actual-location-date {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.weather-info{
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: white;
+}
+.actual-date {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: capitalize;
+}
+
+.location h4 {
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.location{
+  display: flex;
+  align-items: center;
+}
+.weather-image{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 19px;
+  width: 120px;
+  height: 120px;
+  align-items: center;
+}
+
+.weather-image img{
+  width: 120px;
+  height: 140px;
+  justify-content: center;
+  margin-left: -2px;
+  margin-right: 5px;
+  border: 1px solid;
+
+}
+.container-info{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  height: 140px;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.temperature{
+    /* border: 1px solid; */
+  width: 44px;
+  margin-top: 14px;
+  text-align: center;
+  font-size: 24px;
+  width: auto;
+  color:  white;
+}
+.weather-descript{
+    /* border: 1px solid; */
+  width: 79px;
+  height: auto;
+  margin-top: 12px;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+
+}
+.additon-info{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 17px;
+  align-items: center;
+  height: auto;
+  color: white;
+  font-size: small;
+  font-weight: 10;
+  align-self: center;
+  margin-left: 6px;
+  margin-right: 6px;
+  border: 1px solid;
+
+}
+.humidity-cart{
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  height: 40px;
+  border-radius: 6px;
+  align-items: center;
+
+}
+.wind-cart{
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  height: 40px;
+  border-radius: 6px;
+  align-items: center;
+}
+.light-cart{ 
+   
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  height: 40px;
+  border-radius: 6px;
+  align-items: center;
+}
+.five-day-weather{
+  overflow-x: auto;
+  overscroll-behavior-x: auto;
+  border: 1px solid;
+  height: 100px;
+  margin-top:  13px;
+  display: flex;
+  justify-content: space-between;
+  height: 220px;
+}
+.first-day{
+  border-radius: 12px;
+  padding-left: 55px;
+  padding-right: 55px;
+  height: 200px;
+  margin-top: 12px;
+  margin-right: 13px;
+  margin-left: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.15));
+}
+
