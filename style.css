@@ -102,7 +102,7 @@ body {
   text-transform: capitalize;
 }
 
-.location h4 {
+.location-name {
   font-size: 20px;
   font-weight: 500;
   text-transform: capitalize;
@@ -245,14 +245,14 @@ body {
   margin-bottom: 10px;
 }
 .error-message{
-    color: rgb(66, 66, 66);
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 25px;
-    text-align: center;
+  color: rgb(66, 66, 66);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+  text-align: center;
 }
 .error-text{
-    color: aliceblue;
-    font-size: 15px;
-    text-align: center;
-    margin-top: 6px;
+  color: aliceblue;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 6px;
 }
