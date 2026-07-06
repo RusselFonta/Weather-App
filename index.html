@@ -3,7 +3,7 @@
     <head>
         <title>Weather app</title>
         <!-- importing fonts from google -->
-         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         <link rel="icon" type="image/png" href="asset/image/istockphoto-1164894431-1024x1024.jpg">
         <link rel="stylesheet" href="style.css">
         <meta charset="UTF-8">
@@ -17,6 +17,7 @@
                 <span class="material-symbols-outlined">search</span>
             </button>
              </header>
+             <section style="display: none;">
             <section class="weather-info">
                 <div class="actual-location-date">
                     <div class="location">
@@ -32,7 +33,7 @@
                 <img src="asset/image/sunny.png" alt="rain-cloud" class="sunny-iamge">
                 <div class="container-info">
                     <h5 class="temperature">100°C</h5>
-                    <p class="weather-descript">sunny day</p>
+                    <p class="weather-descript">sunny day dh</p>
                 </div>
             </section>
             <section class="additon-info">
@@ -56,6 +57,14 @@
                 <div class="first-day"></div>
                 <div class="first-day"></div>
             </section>
-        </main>     
+        </section>
+        <section class="error-part">
+        <div class="error-text">
+            <img src="asset/image/gumball cloud.png" alt="cloudy error message" style="font-size: 13px; color: rgb(149, 243, 255);">
+        </div>
+        <h4 class="error-message">Error found</h4>
+        <p class="error-text">An error has been found please check the city spelling and the internet connection and try agian </p>
+        </section>   
+    </main>     
     </body>
 </html>
