@@ -21,9 +21,9 @@ body {
 
 .main-container {
   border: 1px solid rgb(255 255 255 / 20%);
-  border-radius: 10px;
-  width: 300px;
-  height: 550px;
+  border-radius: 29px;
+  width: 350px;
+  height: 580px;
   background:
     linear-gradient(
       to bottom,
@@ -119,49 +119,51 @@ body {
   margin-top: 19px;
   width: 120px;
   height: 120px;
-  align-items: center;
+
 }
 
 .weather-image img {
-  width: 120px;
-  height: 140px;
+  width: 170px;
+  height: 150px;
   justify-content: center;
-  margin-left: -2px;
+  margin-left: -5px;
   margin-right: 5px;
 }
 
 .container-info {
-  display: flex;
   flex-direction: column;
-  height: 140px;
-  align-items: center;
+  height: 160px;
   padding-left: 30px;
   padding-right: 30px;
+  text-align: center;
+  border: 1px solid;
+
 }
 
 .temperature {
+   border: 1px solid;
   margin-top: 14px;
-  text-align: center;
+  text-align: right;
   font-size: 24px;
   width: auto;
   color: white;
-  padding-left: 40px;
+
 }
 
 .weather-descript {
-  width: 79px;
-  height: auto;
+  width: 100px;
+  height: 95px;
   margin-top: 12px;
   text-align: center;
   color: white;
   font-size: 14px;
-  border: 1px sol;
+  border: none;
 }
 
 .additon-info {
   display: flex;
   justify-content: space-between;
-  margin-top: 17px;
+  margin-top: 45px;
   align-items: center;
   height: auto;
   color: white;
@@ -170,6 +172,7 @@ body {
   align-self: center;
   margin-left: 6px;
   margin-right: 6px;
+  border: 1px solid green;
 }
 
 .humidity-cart {
