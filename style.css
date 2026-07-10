@@ -20,14 +20,16 @@ body {
 }
 
 .main-container {
-  border: 1px solid rgb(255 255 255 / 20%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 29px;
   width: 350px;
   height: 580px;
   background:
-    linear-gradient(to bottom,
-      rgb(255 255 255 / 15%),
-      rgb(0 0 0 / 15%));
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.15),
+      rgba(0, 0, 0, 0.15)
+    );
   backdrop-filter: blur(15px);
   padding: 20px;
 }
@@ -36,8 +38,8 @@ body {
   display: flex;
   align-items: center;
   width: 100%;
-  background: rgb(255 255 255 / 15%);
-  border: 1px solid rgb(255 255 255 / 20%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   padding: 4px 8px;
 }
@@ -54,7 +56,7 @@ body {
 }
 
 .search-city::placeholder {
-  color: rgb(255 255 255 / 60%);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .search-btn {
@@ -96,7 +98,7 @@ body {
 .actual-date {
   font-size: 13px;
   font-weight: 300;
-  color: rgb(255 255 255 / 70%);
+  color: rgba(255, 255, 255, 0.7);
   text-transform: capitalize;
 }
 
@@ -117,7 +119,6 @@ body {
   margin-top: 19px;
   width: 120px;
   height: 120px;
-
 }
 
 .weather-image img {
@@ -135,7 +136,6 @@ body {
   padding-right: 30px;
   text-align: center;
   border: 1px solid;
-
 }
 
 .temperature {
@@ -145,7 +145,6 @@ body {
   font-size: 24px;
   width: auto;
   color: white;
-
 }
 
 .weather-descript {
@@ -161,15 +160,13 @@ body {
 .additon-info {
   display: flex;
   justify-content: space-between;
-  margin-top: 45px;
+  margin: 45px 6px 0;
   align-items: center;
   height: auto;
   color: white;
   font-size: small;
   font-weight: 10;
   align-self: center;
-  margin-left: 6px;
-  margin-right: 6px;
   border: 1px solid green;
 }
 
@@ -217,15 +214,14 @@ body {
   padding-left: 55px;
   padding-right: 55px;
   height: 180px;
-  margin-top: 12px;
-  margin-right: 13px;
-  margin-left: 13px;
-  margin-bottom: 13px;
-  border: 1px solid rgb(255 255 255 / 20%);
+  margin: 12px 13px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   background:
-    linear-gradient(to bottom,
-      rgb(255 255 255 / 15%),
-      rgb(0 0 0 / 15%));
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.15),
+      rgba(0, 0, 0, 0.15)
+    );
 }
 
 .error-part {
@@ -234,8 +230,6 @@ body {
   width: 261px;
   align-items: center;
   padding-left: 4px;
-
-
 }
 
 .error-part img {
