@@ -1,88 +1,122 @@
 // initialization of variable
-const input = document.querySelector(".search-city");
-const searchBtn = document.querySelector(".search-btn");
-const Apikey = "ca773f218b34e0fb832b3c84dd037899";
-const Tempeture = document.querySelector(".temperature");
-const Humidity = document.querySelector(".humidity");
-const wind = document.querySelector(".wind-speed");
-const ultravoilet = document.querySelector(".uv-light");
-const actual_location = document.querySelector(".location-name");
-const errorDisplay = document.querySelector(".error-part");
-const weatherInfo = document.querySelector(".weather-box");
+const input = document.querySelector(".search-city")
+const searchBtn = document.querySelector(".search-btn")
+const Apikey = "ca773f218b34e0fb832b3c84dd037899"
+const Tempeture = document.querySelector(".temperature")
+const Humidity = document.querySelector(".humidity")
+const wind = document.querySelector(".wind-speed")
+const ultravoilet = document.querySelector(".uv-light")
+const actual_location = document.querySelector(".location-name")
+const errorDisplay = document.querySelector(".error-part")
+const weatherInfo = document.querySelector(".weather-box")
+const actualTime = document.querySelector(".actual-date")
 const body = document.body;
 
 async function weather_info() {
-  const city = input.value;
+  const city = input.value
   if (city === "") {
-    console.log("ERROR: Enter a city");
-    return;
+    console.log("ERROR: Enter a city")
+    return
   }
-  
-  const apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${Apikey}`;
+
+  const apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${Apikey}`
 
   try {
-    const data = await fetch(apiurl);
-    
+    const data = await fetch(apiurl)
+
     if (!data.ok) {
-      throw new Error(`Response status: ${data.status}`);
+      throw new Error(`Response status: ${data.status}`)
     }
 
-    const response = await data.json();
-    console.log(data);
+    const response = await data.json()
+    console.log(response)
 
+    const apitemperature = response.main.temp
+    const apihumidity = response.main.humidity
+    const apiwind = response.wind.speed
+    const apidescription = response.weather[0].main
 
-    const apitemperature = response.main.temp;
-    const apihumidity = response.main.humidity;
-    const apiwind = response.wind.speed;
-    const apidescription = response.weather[0].main; 
+    const operate = Math.round(apitemperature - 273.15)
+    console.log(apidescription)
 
-    const operate = Math.round(apitemperature - 273.15); 
-    console.log(apidescription);
+    Tempeture.textContent = `${operate} °C`
+    wind.textContent = `${apiwind} m/s`
+    Humidity.textContent = `${apihumidity} %`
+    actual_location.textContent = response.name
+    ultravoilet.textContent = apidescription
 
-  
-    Tempeture.textContent = `${operate} °C`;
-    wind.textContent = `${apiwind} m/s`;
-    Humidity.textContent = `${apihumidity} %`;
-    actual_location.textContent = response.name;
-    ultravoilet.textContent = apidescription;
+    weatherInfo.style.display = "block"
+    errorDisplay.style.display = "none"
 
+    const localTime = (response.dt + response.timezone) * 1000
+    const targetDate = new Date(localTime)
 
-    weatherInfo.style.display = "block";
-    errorDisplay.style.display = "none";
+    // console.log(targetDate);
+    function dateFormat(date = targetDate) {
+      const days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ]
+      const month = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
+      const day = date.getDate()
+      const hour = String(date.getUTCHours()).padStart(2, "0")
+      const minute = String(date.getMinutes()).padStart(2, "0")
 
-  
-    const localTime = (response.dt + response.timezone) * 1000 ;
-    const targetDate = new Date(localTime);
-    console.log(targetDate);
+      return `${days[date.getDay()]} ${date.getDate()} ${month[date.getMonth()]}  ${date.getFullYear()}  ${hour}:${minute}`
+    }
+    actualTime.textContent = dateFormat()
 
-    const currentHour = targetDate.getUTCHours();
+    const currentHour = targetDate.getUTCHours()
 
-  
     function changeBackground(time) {
       if (time >= 6 && time < 12) {
-        body.style.backgroundImage = 'url("asset/image/morning.jpg")';
+        body.style.backgroundImage = 'url("asset/image/morning.jpg")'
       } else if (time >= 12 && time < 18) {
-        body.style.backgroundImage = 'url("asset/image/afternoon.jpg")';
+        body.style.backgroundImage = 'url("asset/image/afternoon.jpg")'
       } else if (time >= 18 && time < 23) {
-        body.style.backgroundImage = 'url("asset/image/evening.jpg")';
+        body.style.backgroundImage = 'url("asset/image/evening.jpg")'
       } else {
-        body.style.backgroundImage = 'url("asset/image/star.jpg")';
+        body.style.backgroundImage = 'url("asset/image/star.jpg")'
       }
     }
-    changeBackground(currentHour);
+    changeBackground(currentHour)
 
-    const currentMinute = targetDate.getUTCMinutes();
-    const currectDate = targetDate.getDate();
-    const currentMonth = targetDate.getUTCMonth(); // Months are 0-indexed
-    const currentYear = targetDate.getFullYear();
-
-    console.log('this is the date', currectDate, currentMonth, currentYear, currentHour, currentMinute);
-    
+    const currentMinute = targetDate.getUTCMinutes()
+    const currectDate = targetDate.getDate()
+    const currentMonth = targetDate.getUTCMonth()
+    const currentYear = targetDate.getFullYear()
+    console.log(currentMinute)
+    console.log(
+      "this is the date",
+      currectDate,
+      currentMonth,
+      currentYear,
+      currentHour,
+      currentMinute,
+    )
   } catch (error) {
     // 5. Moved error UI updates BEFORE the throw statement
-    console.error(error.message);
-    errorDisplay.style.display = 'block';
-    weatherInfo.style.display = 'none';
+    console.error(error.message)
+    errorDisplay.style.display = "block"
+    weatherInfo.style.display = "none"
   }
 }
-searchBtn.addEventListener("click", weather_info);
+searchBtn.addEventListener("click", weather_info)

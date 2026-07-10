@@ -25,11 +25,9 @@ body {
   width: 350px;
   height: 580px;
   background:
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       rgb(255 255 255 / 15%),
-      rgb(0 0 0 / 15%)
-    );
+      rgb(0 0 0 / 15%));
   backdrop-filter: blur(15px);
   padding: 20px;
 }
@@ -141,7 +139,7 @@ body {
 }
 
 .temperature {
-   border: 1px solid;
+  border: 1px solid;
   margin-top: 14px;
   text-align: right;
   font-size: 24px;
@@ -225,13 +223,12 @@ body {
   margin-bottom: 13px;
   border: 1px solid rgb(255 255 255 / 20%);
   background:
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       rgb(255 255 255 / 15%),
-      rgb(0 0 0 / 15%)
-    );
+      rgb(0 0 0 / 15%));
 }
-.error-part{
+
+.error-part {
   margin-top: 40px;
   height: auto;
   width: 261px;
@@ -240,20 +237,23 @@ body {
 
 
 }
-.error-part img{
+
+.error-part img {
   border-radius: 6px;
   width: 250px;
   height: 200px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.error-message{
+
+.error-message {
   color: rgb(66, 66, 66);
   font-family: 'Times New Roman', Times, serif;
   font-size: 25px;
   text-align: center;
 }
-.error-text{
+
+.error-text {
   color: aliceblue;
   font-size: 15px;
   text-align: center;
