@@ -67,7 +67,7 @@ body[data-time="night"]::before {
       to bottom,
       rgba(255 255 255 / 15%),
       rgba(0 0 0 / 15%)
-      );
+);
   backdrop-filter: blur(15px);
   padding: 20px;
 }
@@ -174,11 +174,9 @@ body[data-time="night"]::before {
   padding-left: 30px;
   padding-right: 30px;
   text-align: center;
-  border: 1px solid;
 }
 
 .temperature {
-  border: 1px solid;
   margin-top: 14px;
   text-align: right;
   font-size: 24px;
@@ -206,7 +204,6 @@ body[data-time="night"]::before {
   font-size: small;
   font-weight: 10;
   align-self: center;
-  border: 1px solid green;
 }
 
 .humidity-cart {
