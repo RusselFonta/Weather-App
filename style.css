@@ -18,7 +18,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 body::before {
@@ -59,14 +58,15 @@ body[data-time="night"]::before {
 }
 
 .main-container {
-  border: 1px solid rgba(255, 255, 255, 20%);
+  border: 1px solid rgba(255 255 255 / 20%);
   border-radius: 29px;
   width: 350px;
   height: 580px;
   background:
-    linear-gradient(to bottom,
-      rgba(255, 255, 255, 15%),
-      rgba(0, 0, 0, 15%));
+    linear-gradient(
+      to bottom,
+      rgba(255 255 255 / 15%),
+      rgba(0 0 0 / 15%));
   backdrop-filter: blur(15px);
   padding: 20px;
 }
@@ -75,8 +75,8 @@ body[data-time="night"]::before {
   display: flex;
   align-items: center;
   width: 100%;
-  background: rgba(255, 255, 255, 15%);
-  border: 1px solid rgba(255, 255, 255, 20%);
+  background: rgba(255 255 255 / 15%);
+  border: 1px solid rgba(255 255 255 / 20%);
   border-radius: 20px;
   padding: 4px 8px;
 }
@@ -94,7 +94,7 @@ body[data-time="night"]::before {
 }
 
 .search-city::placeholder {
-  color: rgba(255, 255, 255, 60%);
+  color: rgba(255 255 255 / 60%);
 }
 
 .search-btn {
@@ -136,7 +136,7 @@ body[data-time="night"]::before {
 .actual-date {
   font-size: 13px;
   font-weight: 300;
-  color: rgba(255, 255, 255, 70%);
+  color: rgba(255 255 255 / 70%);
   text-transform: capitalize;
 }
 
@@ -253,11 +253,12 @@ body[data-time="night"]::before {
   padding-right: 55px;
   height: 180px;
   margin: 12px 13px 13px;
-  border: 1px solid rgba(255, 255, 255, 20%);
+  border: 1px solid rgba(255 255 255 / 20%);
   background:
-    linear-gradient(to bottom,
-      rgba(255, 255, 255, 15%),
-      rgba(0, 0, 0, 15%));
+    linear-gradient(
+      to bottom,
+      rgba(255 255 255 / 15%),
+      rgba(0 0 0 / 15%));
 }
 
 .error-part {
@@ -279,7 +280,7 @@ body[data-time="night"]::before {
 }
 
 .error-message {
-  color: rgb(66, 66, 66);
+  color: rgb(66 66 66);
   font-family: 'Times New Roman', Times, serif;
   font-size: 25px;
   text-align: center;
