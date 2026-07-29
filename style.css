@@ -64,9 +64,9 @@ body[data-time="night"]::before {
   height: 580px;
   background:
     linear-gradient(
-    to bottom,
-    rgba(255 255 255 / 15%),
-    rgba(0 0 0 / 15%)
+      to bottom,
+      rgba(255 255 255 / 15%),
+      rgba(0 0 0 / 15%)
       );
   backdrop-filter: blur(15px);
   padding: 20px;
@@ -257,9 +257,10 @@ body[data-time="night"]::before {
   border: 1px solid rgba(255 255 255 / 20%);
   background:
     linear-gradient(
-    to bottom,
-    rgba(255 255 255 / 15%),
-    rgba(0 0 0 / 15%));
+      to bottom,
+      rgba(255 255 255 / 15%),
+      rgba(0 0 0 / 15%)
+);
 }
 
 .error-part {
