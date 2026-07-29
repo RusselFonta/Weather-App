@@ -63,10 +63,10 @@ body[data-time="night"]::before {
   width: 350px;
   height: 580px;
   background:
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       rgba(255 255 255 / 15%),
-      rgba(0 0 0 / 15%));
+      rgba(0 0 0 / 15%)
+      );
   backdrop-filter: blur(15px);
   padding: 20px;
 }
@@ -255,10 +255,10 @@ body[data-time="night"]::before {
   margin: 12px 13px 13px;
   border: 1px solid rgba(255 255 255 / 20%);
   background:
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       rgba(255 255 255 / 15%),
-      rgba(0 0 0 / 15%));
+      rgba(0 0 0 / 15%)
+      );
 }
 
 .error-part {
@@ -281,7 +281,7 @@ body[data-time="night"]::before {
 
 .error-message {
   color: rgb(66 66 66);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 25px;
   text-align: center;
 }
