@@ -6,6 +6,8 @@ const Tempeture = document.querySelector(".temperature")
 const Humidity = document.querySelector(".humidity")
 const wind = document.querySelector(".wind-speed")
 const ultravoilet = document.querySelector(".uv-light")
+const weather_description = document.querySelector(".weather-descript")
+const Icons = document.querySelector(".weather_icon")
 const actual_location = document.querySelector(".location-name")
 const errorDisplay = document.querySelector(".error-part")
 const weatherInfo = document.querySelector(".weather-box")
@@ -21,20 +23,36 @@ async function weather_info() {
 
   const apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${Apikey}`
 
+  // making a second api call for the forecast
+  const forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${Apikey}`
+
   try {
     const data = await fetch(apiurl)
+    const forecastdata = await fetch(forecast)
 
-    if (!data.ok) {
+    //throw an error if an error occured during the status
+    if (!data.ok  || !forecastdata.ok) {
       throw new Error(`Response status: ${data.status}`)
     }
 
     const response = await data.json()
+
+    // convertion of the raw data to a readable and exploitable form
+    const foreresponse = await forecastdata.json()
+
+    // Display information for the next 7 days
+    console.log(foreresponse)
     console.log(response)
 
     const apitemperature = response.main.temp
     const apihumidity = response.main.humidity
     const apiwind = response.wind.speed
-    const apidescription = response.weather[0].main
+    const apidescription = response.weather[0].description
+    const weather_icon = response.weather[0].icon
+
+    // dipdiplay the icon found in the weather array 
+    Icons.src = `https://openweathermap.org/img/wn/${weather_icon}@2x.png`
+    Icons.style.display = "block"
 
     const operate = Math.round(apitemperature - 273.15)
     console.log(apidescription)
@@ -43,7 +61,7 @@ async function weather_info() {
     wind.textContent = `${apiwind} m/s`
     Humidity.textContent = `${apihumidity} %`
     actual_location.textContent = response.name
-    ultravoilet.textContent = apidescription
+    weather_description.textContent = apidescription
 
     weatherInfo.style.display = "block"
     errorDisplay.style.display = "none"
@@ -60,7 +78,7 @@ async function weather_info() {
         "Wednesday",
         "Thursday",
         "Friday",
-        "Saturday",
+        "Saturday"
       ]
       const month = [
         "January",
@@ -77,7 +95,7 @@ async function weather_info() {
         "December"
       ]
       const day = date.getDate()
-      const hour = String(date.getUTCHours()).padStart(2, "0")
+      const hour = String(date.getHours()).padStart(2, "0")
       const minute = String(date.getMinutes()).padStart(2, "0")
 
       return `${days[date.getDay()]} ${date.getDate()} ${month[date.getMonth()]}  ${date.getFullYear()}  ${hour}:${minute}`
@@ -86,18 +104,31 @@ async function weather_info() {
 
     const currentHour = targetDate.getUTCHours()
 
+    // function changeBackground(time) {
+    //   if (time >= 6 && time < 12) {
+    //     body.style.backgroundImage = 'url("asset/image/morning.jpg")'
+    //   } else if (time >= 12 && time < 18) {
+    //     body.style.backgroundImage = 'url("asset/image/afternoon.jpg")'
+    //   } else if (time >= 18 && time < 23) {
+    //     body.style.backgroundImage = 'url("asset/image/evening.jpg")'
+    //   } else {
+    //     body.style.backgroundImage = 'url("asset/image/star.jpg")'
+    //   }
+    // }
+    // changeBackground(currentHour)
     function changeBackground(time) {
-      if (time >= 6 && time < 12) {
-        body.style.backgroundImage = 'url("asset/image/morning.jpg")'
-      } else if (time >= 12 && time < 18) {
-        body.style.backgroundImage = 'url("asset/image/afternoon.jpg")'
-      } else if (time >= 18 && time < 23) {
-        body.style.backgroundImage = 'url("asset/image/evening.jpg")'
-      } else {
-        body.style.backgroundImage = 'url("asset/image/star.jpg")'
-      }
-    }
-    changeBackground(currentHour)
+  if (time >= 6 && time < 12) {
+    document.body.dataset.time = 'morning';
+  } else if (time >= 12 && time < 18) {
+    document.body.dataset.time = 'afternoon';
+  } else if (time >= 18 && time < 23) {
+    document.body.dataset.time = 'evening';
+  } else {
+    document.body.dataset.time = 'night';
+  }
+}
+changeBackground(currentHour);
+
 
     const currentMinute = targetDate.getUTCMinutes()
     const currectDate = targetDate.getDate()
