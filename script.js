@@ -1,73 +1,103 @@
 // initialization of variable
-const input = document.querySelector(".search-city")
-const searchBtn = document.querySelector(".search-btn")
-const Apikey = "ca773f218b34e0fb832b3c84dd037899"
-const Tempeture = document.querySelector(".temperature")
-const Humidity = document.querySelector(".humidity")
-const wind = document.querySelector(".wind-speed")
-const ultravoilet = document.querySelector(".uv-light")
-const weather_description = document.querySelector(".weather-descript")
-const Icons = document.querySelector(".weather_icon")
-const actual_location = document.querySelector(".location-name")
-const errorDisplay = document.querySelector(".error-part")
-const weatherInfo = document.querySelector(".weather-box")
-const actualTime = document.querySelector(".actual-date")
+const input = document.querySelector(".search-city");
+const searchBtn = document.querySelector(".search-btn");
+const Apikey = "ca773f218b34e0fb832b3c84dd037899";
+const Tempeture = document.querySelector(".temperature");
+const Humidity = document.querySelector(".humidity");
+const wind = document.querySelector(".wind-speed");
+const ultravoilet = document.querySelector(".uv-light");
+const weather_description = document.querySelector(".weather-descript");
+const Icons = document.querySelector(".weather_icon");
+const actual_location = document.querySelector(".location-name");
+const errorDisplay = document.querySelector(".error-part");
+const weatherInfo = document.querySelector(".weather-box");
+const actualTime = document.querySelector(".actual-date");
+const foreCard = document.querySelectorAll(".first-day");
 const body = document.body;
 
 async function weather_info() {
-  const city = input.value
+  const city = input.value;
   if (city === "") {
-    console.log("ERROR: Enter a city")
-    return
+    console.log("ERROR: Enter a city");
+    return;
   }
 
-  const apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${Apikey}`
-
-  // making a second api call for the forecast
-  const forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${Apikey}`
+  const apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${Apikey}`;
+  const forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${Apikey}`;
 
   try {
-    const data = await fetch(apiurl)
-    const forecastdata = await fetch(forecast)
+    const data = await fetch(apiurl);
+    const forecastdata = await fetch(forecast);
 
     //throw an error if an error occured during the status
-    if (!data.ok  || !forecastdata.ok) {
-      throw new Error(`Response status: ${data.status}`)
+    if (!data.ok || !forecastdata.ok) {
+      throw new Error(`Response status: ${data.status}`);
     }
 
-    const response = await data.json()
-
     // convertion of the raw data to a readable and exploitable form
-    const foreresponse = await forecastdata.json()
+    const response = await data.json();
+    const foreresponse = await forecastdata.json();
 
-    // Display information for the next 7 days
-    console.log(foreresponse)
-    console.log(response)
+    console.log(foreresponse);
 
-    const apitemperature = response.main.temp
-    const apihumidity = response.main.humidity
-    const apiwind = response.wind.speed
-    const apidescription = response.weather[0].description
-    const weather_icon = response.weather[0].icon
+    //Display the information of the 5 next day
+    const Today = new Date().toISOString();
+    const Splitting = Today.split("T");
+    console.log(
+      `this is the date in ISO format ${Today}  splitted into ${Splitting}`,
+    );
+    const FiveDayForecast = foreresponse.list.filter((item) => {
+      const Midnight = item.dt_txt.includes("12:00:00");
+      return Midnight;
+    });
 
-    // dipdiplay the icon found in the weather array 
-    Icons.src = `https://openweathermap.org/img/wn/${weather_icon}@2x.png`
-    Icons.style.display = "block"
+    foreCard.forEach((card, index) => {
+      const dayInfo = FiveDayForecast[index];
+      console.log(dayInfo);
+      if (dayInfo) {
+        const forecastDate = new Date(dayInfo.dt * 1000);
+        const dayName = forecastDate.toLocaleDateString("en-US", {
+          weekday: "short",
+        });
+        const tempCelsius = Math.round(dayInfo.main.temp - 273.15);
+        const iconCode = dayInfo.weather[0].icon;
+        const desc = dayInfo.weather[0].description;
 
-    const operate = Math.round(apitemperature - 273.15)
-    console.log(apidescription)
+        card.innerHTML = `
+      <h4>${dayName}</h4>
+      <img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="${desc}" title="${desc}">
+      <p class="forecast-temp">${tempCelsius}°C</p>
+    `;
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
 
-    Tempeture.textContent = `${operate} °C`
-    wind.textContent = `${apiwind} m/s`
-    Humidity.textContent = `${apihumidity} %`
-    actual_location.textContent = response.name
-    weather_description.textContent = apidescription
+    const apitemperature = response.main.temp;
+    const apihumidity = response.main.humidity;
+    const apiwind = response.wind.speed;
+    const apidescription = response.weather[0].description;
+    const weather_icon = response.weather[0].icon;
 
-    weatherInfo.style.display = "block"
-    errorDisplay.style.display = "none"
+    // dipdiplay the icon found in the weather array
+    Icons.src = `https://openweathermap.org/img/wn/${weather_icon}@2x.png`;
+    Icons.style.display = "block";
 
-    const localTime = (response.dt + response.timezone) * 1000
-    const targetDate = new Date(localTime)
+    const operate = Math.round(apitemperature - 273.15);
+    console.log(apidescription);
+
+    Tempeture.textContent = `${operate} °C`;
+    wind.textContent = `${apiwind} m/s`;
+    Humidity.textContent = `${apihumidity} %`;
+    actual_location.textContent = response.name;
+    weather_description.textContent = apidescription;
+
+    weatherInfo.style.display = "block";
+    errorDisplay.style.display = "none";
+
+    const localTime = (response.dt + response.timezone) * 1000;
+    const targetDate = new Date(localTime);
 
     // console.log(targetDate);
     function dateFormat(date = targetDate) {
@@ -78,8 +108,8 @@ async function weather_info() {
         "Wednesday",
         "Thursday",
         "Friday",
-        "Saturday"
-      ]
+        "Saturday",
+      ];
       const month = [
         "January",
         "February",
@@ -92,17 +122,17 @@ async function weather_info() {
         "September",
         "October",
         "November",
-        "December"
-      ]
-      const day = date.getDate()
-      const hour = String(date.getHours()).padStart(2, "0")
-      const minute = String(date.getMinutes()).padStart(2, "0")
+        "December",
+      ];
+      const day = date.getDate();
+      const hour = String(date.getHours()).padStart(2, "0");
+      const minute = String(date.getMinutes()).padStart(2, "0");
 
-      return `${days[date.getDay()]} ${date.getDate()} ${month[date.getMonth()]}  ${date.getFullYear()}  ${hour}:${minute}`
+      return `${days[date.getDay()]} ${date.getDate()} ${month[date.getMonth()]}  ${date.getFullYear()}  ${hour}:${minute}`;
     }
-    actualTime.textContent = dateFormat()
+    actualTime.textContent = dateFormat();
 
-    const currentHour = targetDate.getUTCHours()
+    const currentHour = targetDate.getUTCHours();
 
     // function changeBackground(time) {
     //   if (time >= 6 && time < 12) {
@@ -117,24 +147,23 @@ async function weather_info() {
     // }
     // changeBackground(currentHour)
     function changeBackground(time) {
-  if (time >= 6 && time < 12) {
-    document.body.dataset.time = 'morning';
-  } else if (time >= 12 && time < 18) {
-    document.body.dataset.time = 'afternoon';
-  } else if (time >= 18 && time < 23) {
-    document.body.dataset.time = 'evening';
-  } else {
-    document.body.dataset.time = 'night';
-  }
-}
-changeBackground(currentHour);
+      if (time >= 6 && time < 12) {
+        document.body.dataset.time = "morning";
+      } else if (time >= 12 && time < 18) {
+        document.body.dataset.time = "afternoon";
+      } else if (time >= 18 && time < 23) {
+        document.body.dataset.time = "evening";
+      } else {
+        document.body.dataset.time = "night";
+      }
+    }
+    changeBackground(currentHour);
 
-
-    const currentMinute = targetDate.getUTCMinutes()
-    const currectDate = targetDate.getDate()
-    const currentMonth = targetDate.getUTCMonth()
-    const currentYear = targetDate.getFullYear()
-    console.log(currentMinute)
+    const currentMinute = targetDate.getUTCMinutes();
+    const currectDate = targetDate.getDate();
+    const currentMonth = targetDate.getUTCMonth();
+    const currentYear = targetDate.getFullYear();
+    console.log(currentMinute);
     console.log(
       "this is the date",
       currectDate,
@@ -142,12 +171,12 @@ changeBackground(currentHour);
       currentYear,
       currentHour,
       currentMinute,
-    )
+    );
   } catch (error) {
     // 5. Moved error UI updates BEFORE the throw statement
-    console.error(error.message)
-    errorDisplay.style.display = "block"
-    weatherInfo.style.display = "none"
+    console.error(error.message);
+    errorDisplay.style.display = "block";
+    weatherInfo.style.display = "none";
   }
 }
-searchBtn.addEventListener("click", weather_info)
+searchBtn.addEventListener("click", weather_info);
