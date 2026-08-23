@@ -51,6 +51,7 @@ async function weather_info() {
       return Midnight;
     });
 
+    //using the foreach method to dipslay the result in a specific tag base on the index
     foreCard.forEach((card, index) => {
       const dayInfo = FiveDayForecast[index];
       console.log(dayInfo);
@@ -60,12 +61,12 @@ async function weather_info() {
           weekday: "short",
         });
         const tempCelsius = Math.round(dayInfo.main.temp - 273.15);
-        const iconCode = dayInfo.weather[0].icon;
+        const forecast_icon = dayInfo.weather[0].icon;
         const desc = dayInfo.weather[0].description;
 
         card.innerHTML = `
       <h4>${dayName}</h4>
-      <img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="${desc}" title="${desc}">
+      <img src="https://openweathermap.org/img/wn/${forecast_icon}@2x.png" alt="${desc}" title="${desc}">
       <p class="forecast-temp">${tempCelsius}°C</p>
     `;
         card.style.display = "block";
