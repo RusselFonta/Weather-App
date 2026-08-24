@@ -167,6 +167,73 @@ async function weather_info() {
     changeBackground(currentHour);
 
 
+    // Display information on weather risk based on humidity and temperature
+function enviromentalRange(Temps, Hums) {
+  if (Temps > 35 && Hums > 60) {
+    conditions.innerHTML = `
+      <h6>Very Hot & Sticky</h6>
+      <p><strong>Effect: </strong>Painful muscle cramps, heat stroke, and tiredness</p>
+      <p><strong>Solution: </strong>Drink a lot of water and wet your skin with a damp towel</p>
+    `;
+  } else if (Temps > 35 && Hums < 30) {
+    conditions.innerHTML = `
+      <h6>Very Hot & Dry</h6>
+      <p><strong>Effect: </strong>Fast dehydration, headaches, and fainting</p>
+      <p><strong>Solution: </strong>Drink water before you feel thirsty</p>
+    `;
+  } else if (Temps > 26 && Temps <= 34 && Hums > 70) {
+    conditions.innerHTML = `
+      <h6>Warm & Sticky</h6>
+      <p><strong>Effect: </strong>Hard to cool down</p>
+      <p><strong>Solution: </strong>Use fans and wear light clothes</p>
+    `;
+  } else if (Temps >= 25 && Temps <= 35 && Hums > 30) {
+    conditions.innerHTML = `
+      <h6>Warm & Muggy</h6>
+      <p><strong>Effect: </strong>Hard to breathe, can trigger bad asthma attacks and allergies</p>
+      <p><strong>Solution: </strong>Rest and do not work too hard (avoid running or sports)</p>
+    `;
+  } else if (Temps >= 20 && Temps <= 25 && Hums >= 30 && Hums <= 50) {
+    conditions.innerHTML = `
+      <h6>Perfect Comfort</h6>
+      <p><strong>Effect: </strong>Best condition for the body</p>
+      <p><strong>Solution: </strong>Stay active (walk, exercise, and spend time outside)</p>
+    `;
+  } else if (Temps >= 10 && Temps <= 19 && Hums > 30) {
+    conditions.innerHTML = `
+      <h6>Cool & Damp</h6>
+      <p><strong>Effect: </strong>Joint aches and allergies</p>
+      <p><strong>Solution: </strong>Keep warm and air out rooms briefly</p>
+    `;
+  } else if (Temps >= 10 && Temps <= 19 && Hums < 30) {
+    conditions.innerHTML = `
+      <h6>Cool & Dry</h6>
+      <p><strong>Effect: </strong>Dry skin and static shocks</p>
+      <p><strong>Solution: </strong>Moisturize your skin and drink water</p>
+    `;
+  } else if (Temps < 0 && Hums >= 80) {
+    conditions.innerHTML = `
+      <h6>Freezing & Wet</h6>
+      <p><strong>Effect: </strong>Frostbite and hypothermia</p>
+      <p><strong>Solution: </strong>Wear many layers of warm clothes</p>
+    `;
+  } else if (Temps < 0 && Hums < 80) {
+    conditions.innerHTML = `
+      <h6>Freezing & Dry</h6>
+      <p><strong>Effect: </strong>Chapped skin and increased illness risk</p>
+      <p><strong>Solution: </strong>Use lip balm and stay covered</p>
+    `;
+  } else {
+    conditions.innerHTML = `
+      <h6>Moderate Weather</h6>
+      <p><strong>Effect: </strong>Normal weather conditions</p>
+      <p><strong>Solution: </strong>Dress appropriately for the temperature</p>
+    `;
+  }
+}
+enviromentalRange(operate, apihumidity);
+
+
     const currentMinute = targetDate.getUTCMinutes();
     const currectDate = targetDate.getDate();
     const currentMonth = targetDate.getUTCMonth();
