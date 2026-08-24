@@ -326,6 +326,13 @@ body[data-time="night"]::before {
   text-align: left;
 }
 
+.forecast-weather-descript {
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 7px;
+  color: rgb(160 160 160);
+}
+
 .enviromental-condition h6 {
   margin: 0 0 6px; 
   font-size: 1rem;
