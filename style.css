@@ -61,7 +61,7 @@ body[data-time="night"]::before {
   border: 1px solid rgba(255 255 255 / 20%);
   border-radius: 29px;
   width: 350px;
-  height: 580px;
+  height: 550px;
   background:
     linear-gradient(
       to bottom,
@@ -239,25 +239,27 @@ body[data-time="night"]::before {
 .five-day-weather {
   overflow-y: auto;
   overscroll-behavior-x: auto;
-  margin-top: 13px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+  margin-top: 16px;
   display: flex;
   justify-content: space-between;
-  height: 220px;
+  height: 180px;
+  gap: 8px;
 }
 
 .first-day {
+  flex: 0 0 95px;
+  height: 140px;
+  padding: 8px 4px;
   border-radius: 12px;
-  padding-left: 55px;
-  padding-right: 55px;
-  height: 180px;
-  margin: 12px 13px 13px;
   border: 1px solid rgba(255 255 255 / 20%);
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(255 255 255 / 15%),
-      rgba(0 0 0 / 15%)
-    );
+  background: linear-gradient(to bottom, rgba(255 255 255 / 15%), rgba(0 0 0 / 15%));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
 }
 
 .error-part {
@@ -290,4 +292,28 @@ body[data-time="night"]::before {
   font-size: 15px;
   text-align: center;
   margin-top: 6px;
+}
+
+
+.first-day h4 {
+  font-size: 12px;
+  color: antiquewhite;
+}
+
+.first-day img {
+  width: 40px;
+  height: 40px;
+}
+
+.forecast-temp {
+  font-size: 13px;
+  font-weight: bold;
+  color: antiquewhite;
+}
+
+.forecast-hum{
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 6px;
+  color: antiquewhite;
 }

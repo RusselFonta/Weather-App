@@ -40,41 +40,6 @@ async function weather_info() {
 
     console.log(foreresponse);
 
-    //Display the information of the 5 next day
-    const Today = new Date().toISOString();
-    const Splitting = Today.split("T");
-    console.log(
-      `this is the date in ISO format ${Today}  splitted into ${Splitting}`,
-    );
-    const FiveDayForecast = foreresponse.list.filter((item) => {
-      const Midnight = item.dt_txt.includes("12:00:00");
-      return Midnight;
-    });
-
-    //using the foreach method to dipslay the result in a specific tag base on the index
-    foreCard.forEach((card, index) => {
-      const dayInfo = FiveDayForecast[index];
-      console.log(dayInfo);
-      if (dayInfo) {
-        const forecastDate = new Date(dayInfo.dt * 1000);
-        const dayName = forecastDate.toLocaleDateString("en-US", {
-          weekday: "short",
-        });
-        const tempCelsius = Math.round(dayInfo.main.temp - 273.15);
-        const forecast_icon = dayInfo.weather[0].icon;
-        const desc = dayInfo.weather[0].description;
-
-        card.innerHTML = `
-      <h4>${dayName}</h4>
-      <img src="https://openweathermap.org/img/wn/${forecast_icon}@2x.png" alt="${desc}" title="${desc}">
-      <p class="forecast-temp">${tempCelsius}°C</p>
-    `;
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
-    });
-
     const apitemperature = response.main.temp;
     const apihumidity = response.main.humidity;
     const apiwind = response.wind.speed;
@@ -125,6 +90,42 @@ async function weather_info() {
         "November",
         "December",
       ];
+
+      //Display the information of the 5 next day
+      const Today = new Date().toISOString();
+      const Splitting = Today.split("T");
+      console.log(
+        `this is the date in ISO format ${Today}  splitted into ${Splitting}`,
+      );
+      const FiveDayForecast = foreresponse.list.filter((item) => {
+        const Midnight = item.dt_txt.includes("12:00:00");
+        return Midnight;
+      });
+
+      //using the foreach method to dipslay the result in a specific tag base on the index
+      foreCard.forEach((card, index) => {
+        const dayInfo = FiveDayForecast[index];
+        console.log(dayInfo);
+        if (dayInfo) {
+          const forecastDate = (dayInfo.dt + foreresponse.city.timezone) * 1000;
+          const targetecastDate = new Date(forecastDate);
+          const tempCelsius = Math.round(dayInfo.main.temp - 273.15);
+          const forecast_icon = dayInfo.weather[0].icon;
+          const castHum = dayInfo.main.humidity;
+          const desc = dayInfo.weather[0].description;
+
+          card.innerHTML = `
+      <h4>${days[targetecastDate.getDay()]}</h4>
+      <img src="https://openweathermap.org/img/wn/${forecast_icon}@2x.png" alt="${desc}" title="${desc}">
+      <p class="forecast-temp">${tempCelsius}°C</p>
+      <p class ="forecast-hum">${castHum}%</p>
+    `;
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+
       const day = date.getDate();
       const hour = String(date.getHours()).padStart(2, "0");
       const minute = String(date.getMinutes()).padStart(2, "0");
