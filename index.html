@@ -20,6 +20,7 @@
                 <span class="material-symbols-outlined">search</span>
             </button>
         </header>
+
         <section style="display: none;" class="weather-box">
             <section class="weather-info">
                 <div class="actual-location-date">
@@ -31,15 +32,14 @@
                 </div>
             </section>
 
-        
             <section class="weather-image">
                 <img src="" alt="rain-cloud" class="weather_icon">
                 <div class="container-info">
                     <h5 class="temperature"></h5>
                     <p class="weather-descript"></p>
-                    <span class="enviromental-condition"></span>
                 </div>
             </section>
+
             <section class="additon-info">
                 <div class="humidity-cart">
                     <span class="material-symbols-outlined">cool_to_dry</span>
@@ -54,6 +54,9 @@
                     <h4 class="uv-light">60 <b>W/m<sup style="font-size: 8px;">2</sup></b></h4>
                 </div>
             </section>
+
+            <div class="enviromental-condition"></div>
+
             <section class="five-day-weather">
                 <div class="first-day"></div>
                 <div class="first-day"></div>
@@ -62,14 +65,14 @@
                 <div class="first-day"></div>
             </section>
         </section>
+
         <section class="error-part" style="display: none;">
             <div class="error-text">
                 <img src="asset/image/gumball_cloud.png" alt="cloudy error message"
                     style="font-size: 13px; color: rgb(149, 243, 255);">
             </div>
             <h4 class="error-message">Error found</h4>
-            <p class="error-text">An error has been found please check the city spelling and the internet connection and
-                try agian </p>
+            <p class="error-text">An error has been found please check the city spelling and the internet connection and try again</p>
         </section>
     </main>
     <script src="script.js" defer></script>
