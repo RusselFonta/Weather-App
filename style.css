@@ -36,7 +36,6 @@ body::before {
   transition: opacity 1s ease;
 }
 
-
 body[data-time="morning"]::before {
   background-image: url("asset/image/morning.jpg");
   opacity: 1;
@@ -63,9 +62,11 @@ body[data-time="night"]::before {
   width: 350px;
   height: 560px;
   background:
-    linear-gradient(to bottom,
+    linear-gradient(
+      to bottom,
       rgba(255 255 255 / 15%),
-      rgba(0 0 0 / 15%));
+      rgba(0 0 0 / 15%)
+    );
   backdrop-filter: blur(15px);
   padding: 20px;
 }
@@ -202,8 +203,7 @@ body[data-time="night"]::before {
   font-size: small;
   font-weight: 10;
   align-self: center;
-  border: 1px solid red ;
-  
+  border: 1px solid red;
 }
 
 .humidity-cart {
@@ -240,7 +240,7 @@ body[data-time="night"]::before {
   overflow-y: auto;
   overscroll-behavior-x: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 40%) transparent;
+  scrollbar-color: rgb(255 255 255 / 40%) transparent;
   margin-top: 16px;
   display: flex;
   justify-content: space-between;
@@ -317,9 +317,9 @@ body[data-time="night"]::before {
   color: antiquewhite;
 }
 
-.forecast-weather-descript{
+.forecast-weather-descript {
   font-size: 12px;
   font-weight: bold;
   margin-top: 7px;
-  color: rgb(160, 160, 160);
+  color: rgb(160 160 160);
 }
