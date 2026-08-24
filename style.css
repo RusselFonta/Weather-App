@@ -8,7 +8,7 @@
 
 body {
   background-image: url("asset/image/pexels-diva-23-2157852563-35333210.jpg");
-  transition: background-image 1s ease;
+  transition: background-image 3s ease;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -36,7 +36,7 @@ body::before {
   transition: opacity 1s ease;
 }
 
-/* Time-based background overrides that fade in smoothly */
+
 body[data-time="morning"]::before {
   background-image: url("asset/image/morning.jpg");
   opacity: 1;
@@ -61,7 +61,7 @@ body[data-time="night"]::before {
   border: 1px solid rgba(255 255 255 / 20%);
   border-radius: 29px;
   width: 350px;
-  height: 550px;
+  height: 560px;
   background:
     linear-gradient(to bottom,
       rgba(255 255 255 / 15%),
@@ -202,6 +202,8 @@ body[data-time="night"]::before {
   font-size: small;
   font-weight: 10;
   align-self: center;
+  border: 1px solid red ;
+  
 }
 
 .humidity-cart {
@@ -247,8 +249,8 @@ body[data-time="night"]::before {
 }
 
 .first-day {
-  flex: 0 0 95px;
-  height: 140px;
+  flex: 0 0 96px;
+  height: 149px;
   padding: 8px 4px;
   border-radius: 12px;
   border: 1px solid rgba(255 255 255 / 20%);
@@ -293,24 +295,31 @@ body[data-time="night"]::before {
 }
 
 .first-day h4 {
-  font-size: 12px;
+  font-size: 13px;
   color: antiquewhite;
 }
 
 .first-day img {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 }
 
 .forecast-temp {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
   color: antiquewhite;
 }
 
 .forecast-hum {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
   margin-top: 6px;
   color: antiquewhite;
+}
+
+.forecast-weather-descript{
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 7px;
+  color: rgb(160, 160, 160);
 }

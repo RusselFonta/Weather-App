@@ -13,6 +13,7 @@ const errorDisplay = document.querySelector(".error-part");
 const weatherInfo = document.querySelector(".weather-box");
 const actualTime = document.querySelector(".actual-date");
 const foreCard = document.querySelectorAll(".first-day");
+const conditions = document.querySelector(".enviromental-condition");
 const body = document.body;
 
 async function weather_info() {
@@ -65,6 +66,7 @@ async function weather_info() {
     const localTime = (response.dt + response.timezone) * 1000;
     const targetDate = new Date(localTime);
 
+    
     // console.log(targetDate);
     function dateFormat(date = targetDate) {
       const days = [
@@ -91,6 +93,7 @@ async function weather_info() {
         "December",
       ];
 
+
       //Display the information of the 5 next day
       const Today = new Date().toISOString();
       const Splitting = Today.split("T");
@@ -101,6 +104,7 @@ async function weather_info() {
         const Midnight = item.dt_txt.includes("12:00:00");
         return Midnight;
       });
+
 
       //using the foreach method to dipslay the result in a specific tag base on the index
       foreCard.forEach((card, index) => {
@@ -114,8 +118,10 @@ async function weather_info() {
           const castHum = dayInfo.main.humidity;
           const desc = dayInfo.weather[0].description;
 
-          card.innerHTML = `
+
+      card.innerHTML = `
       <h4>${days[targetecastDate.getDay()]}</h4>
+      <p class = "forecast-weather-descript">${desc}</p>
       <img src="https://openweathermap.org/img/wn/${forecast_icon}@2x.png" alt="${desc}" title="${desc}">
       <p class="forecast-temp">${tempCelsius}°C</p>
       <p class ="forecast-hum">${castHum}%</p>
@@ -126,14 +132,13 @@ async function weather_info() {
         }
       });
 
+
       const day = date.getDate();
       const hour = String(date.getHours()).padStart(2, "0");
       const minute = String(date.getMinutes()).padStart(2, "0");
-
       return `${days[date.getDay()]} ${date.getDate()} ${month[date.getMonth()]}  ${date.getFullYear()}  ${hour}:${minute}`;
     }
     actualTime.textContent = dateFormat();
-
     const currentHour = targetDate.getUTCHours();
 
     // function changeBackground(time) {
@@ -161,6 +166,7 @@ async function weather_info() {
     }
     changeBackground(currentHour);
 
+
     const currentMinute = targetDate.getUTCMinutes();
     const currectDate = targetDate.getDate();
     const currentMonth = targetDate.getUTCMonth();
@@ -174,6 +180,8 @@ async function weather_info() {
       currentHour,
       currentMinute,
     );
+
+
   } catch (error) {
     // 5. Moved error UI updates BEFORE the throw statement
     console.error(error.message);
@@ -182,3 +190,6 @@ async function weather_info() {
   }
 }
 searchBtn.addEventListener("click", weather_info);
+input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") weather_info();
+});
