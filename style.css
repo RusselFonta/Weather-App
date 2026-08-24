@@ -333,8 +333,17 @@ body[data-time="night"]::before {
   color: rgb(160 160 160);
 }
 
+.enviromental-condition {
+  margin: 15px 0;
+  padding: 12px 16px;
+  background: rgb(255 255 255 / 12%);
+  border-left: 4px solid #ffab40;
+  border-radius: 8px;
+  text-align: left;
+}
+
 .enviromental-condition h6 {
-  margin: 0 0 6px; 
+  margin: 0 0 6px;
   font-size: 1rem;
   color: #fff;
 }
