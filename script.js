@@ -14,10 +14,14 @@ const weatherInfo = document.querySelector(".weather-box");
 const actualTime = document.querySelector(".actual-date");
 const foreCard = document.querySelectorAll(".first-day");
 const conditions = document.querySelector(".enviromental-condition");
-const body = document.body;
 
+// function to persist refreshing
+const SaveInformation = (city) => {
+  if(city)
+  localStorage.setItem('LastSearchCity' , city)
+}
 
-//change background image base on the time 
+//change background image base on the time
 function changeBackground(time) {
   if (time >= 6 && time < 12) {
     document.body.dataset.time = "morning";
@@ -95,7 +99,6 @@ function enviromentalRange(Temps, Hums) {
   }
 }
 
-
 async function weather_info() {
   const city = input.value;
   if (city === "") {
@@ -118,6 +121,8 @@ async function weather_info() {
     // convertion of the raw data to a readable and exploitable form
     const response = await data.json();
     const foreresponse = await forecastdata.json();
+
+    SaveInformation(response.name)
 
     console.log(foreresponse);
 
@@ -211,7 +216,7 @@ async function weather_info() {
       const day = date.getDate();
       const hour = String(date.getHours()).padStart(2, "0");
       const minute = String(date.getMinutes()).padStart(2, "0");
-      return `${days[date.getDay()]} ${date.getDate()} ${month[date.getMonth()]}  ${date.getFullYear()}  ${hour}:${minute}`;
+      return `${days[date.getDay()]} ${date.getDate()} ${month[date.getMonth()]}  ${date.getFullYear()} ${hour}:${minute}`;
     }
     actualTime.textContent = dateFormat();
     const currentHour = targetDate.getUTCHours();
@@ -243,3 +248,11 @@ searchBtn.addEventListener("click", weather_info);
 input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") weather_info();
 });
+
+window.addEventListener("DOMContentLoaded", () => {
+  const SaveCity = localStorage.getItem('LastSearchCity')
+  if(SaveCity){
+    input.value = SaveCity
+    weather_info();
+  }
+})
