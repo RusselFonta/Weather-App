@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 *,
 *::before,
@@ -11,7 +11,7 @@
 body {
   background-image: url("asset/image/pexels-diva-23-2157852563-35333210.jpg");
   transition: background-image 3s ease;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -21,7 +21,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
 body::before {
@@ -69,11 +68,12 @@ body[data-time="night"]::before {
   border-radius: 29px;
   width: 450px;
   height: 660px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255 255 255 / 15%),
-    rgba(0 0 0 / 15%)
-  );
+  background: 
+    linear-gradient(
+      to bottom,
+      rgba(255 255 255 / 15%),
+      rgba(0 0 0 / 15%)
+    );
   backdrop-filter: blur(15px);
   padding: 20px;
 }
@@ -178,7 +178,6 @@ body[data-time="night"]::before {
   margin-left: -20px;
   margin-bottom: 15px;
   margin-top: -20px;
-  
 }
 
 .container-info {
@@ -272,11 +271,12 @@ body[data-time="night"]::before {
   padding: 8px 4px;
   border-radius: 12px;
   border: 1px solid rgba(255 255 255 / 20%);
-  background: linear-gradient(
-    to bottom,
-    rgba(255 255 255 / 15%),
-    rgba(0 0 0 / 15%)
-  );
+  background: 
+    linear-gradient(
+      to bottom,
+      rgba(255 255 255 / 15%),
+      rgba(0 0 0 / 15%)
+    );
   display: flex;
   flex-direction: column;
   align-items: center;
