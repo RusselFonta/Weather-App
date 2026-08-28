@@ -68,7 +68,7 @@ body[data-time="night"]::before {
   border-radius: 29px;
   width: 450px;
   height: 660px;
-  background: 
+  background:
     linear-gradient(
       to bottom,
       rgba(255 255 255 / 15%),
@@ -271,7 +271,7 @@ body[data-time="night"]::before {
   padding: 8px 4px;
   border-radius: 12px;
   border: 1px solid rgba(255 255 255 / 20%);
-  background: 
+  background:
     linear-gradient(
       to bottom,
       rgba(255 255 255 / 15%),
