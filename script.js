@@ -35,67 +35,77 @@ function changeBackground(time) {
 
 // Display information on weather risk based on humidity and temperature
 function environmentalRange(temps, hums) {
+  let title = ''
+  let Effect = ''
+  let Solution = ''
   if (temps > 35 && hums > 60) {
-    conditions.innerHTML = `
-      <h6>Very Hot & Sticky</h6>
-      <p><strong>Effect: </strong>Painful muscle cramps, heat stroke, and tiredness</p>
-      <p><strong>Solution: </strong>Drink a lot of water and wet your skin with a damp towel</p>
-    `
+    
+      title = 'Very Hot & Sticky'
+      Effect: 'Painful muscle cramps, heat stroke, and tiredness'
+      Solution: 'Drink a lot of water and wet your skin with a damp towel'
+
   } else if (temps > 35 && hums < 30) {
-    conditions.innerHTML = `
-      <h6>Very Hot & Dry</h6>
-      <p><strong>Effect: </strong>Fast dehydration, headaches, and fainting</p>
-      <p><strong>Solution: </strong>Drink water before you feel thirsty</p>
-    `
+    
+      title = 'Very Hot & Dry'
+      Effect = 'Fast dehydration, headaches, and fainting'
+      Solution ='Drink water before you feel thirsty'
+    
   } else if (temps > 26 && temps <= 34 && hums > 70) {
-    conditions.innerHTML = `
-      <h6>Warm & Sticky</h6>
-      <p><strong>Effect: </strong>Hard to cool down</p>
-      <p><strong>Solution: </strong>Use fans and wear light clothes</p>
-    `
+    
+      title = 'Warm & Sticky'
+      Effect = 'Hard to cool down'
+      Solution = 'Use fans and wear light clothes'
+    
   } else if (temps >= 25 && temps <= 35 && hums > 30) {
-    conditions.innerHTML = `
-      <h6>Warm & Muggy</h6>
-      <p><strong>Effect: </strong>Hard to breathe, can trigger bad asthma attacks and allergies</p>
-      <p><strong>Solution: </strong>Rest and do not work too hard (avoid running or sports)</p>
-    `
+    
+      title = 'Warm & Muggy'
+      Effect = 'Hard to breathe, can trigger bad asthma attacks and allergies'
+      Solution: 'Rest and do not work too hard (avoid running or sports)'
+    
   } else if (temps >= 20 && temps <= 25 && hums >= 30 && hums <= 50) {
-    conditions.innerHTML = `
-      <h6>Perfect Comfort</h6>
-      <p><strong>Effect: </strong>Best condition for the body</p>
-      <p><strong>Solution: </strong>Stay active (walk, exercise, and spend time outside)</p>
-    `
+   
+      title = 'Perfect Comfort</h6'
+      Effect = 'Best condition for the body'
+      Solution = 'Stay active (walk, exercise, and spend time outside)'
+    
   } else if (temps >= 10 && temps <= 19 && hums > 30) {
-    conditions.innerHTML = `
-      <h6>Cool & Damp</h6>
-      <p><strong>Effect: </strong>Joint aches and allergies</p>
-      <p><strong>Solution: </strong>Keep warm and air out rooms briefly</p>
-    `
+    
+      title = 'Cool & Damp'
+      Effect = 'Joint aches and allergies'
+      Solution = 'Keep warm and air out rooms briefly'
+    
   } else if (temps >= 10 && temps <= 19 && hums < 30) {
-    conditions.innerHTML = `
-      <h6>Cool & Dry</h6>
-      <p><strong>Effect: </strong>Dry skin and static shocks</p>
-      <p><strong>Solution: </strong>Moisturize your skin and drink water</p>
-    `
+    
+      title = '<h6>Cool & Dry</h6>'
+      Effect = 'Dry skin and static shocks'
+      Solution = 'Moisturize your skin and drink water'
+    
   } else if (temps < 0 && hums >= 80) {
-    conditions.innerHTML = `
-      <h6>Freezing & Wet</h6>
-      <p><strong>Effect: </strong>Frostbite and hypothermia</p>
-      <p><strong>Solution: </strong>Wear many layers of warm clothes</p>
-    `
+    
+      title = 'Freezing & Wet'
+      Effect = 'Frostbite and hypothermia'
+      Solution = 'Wear many layers of warm clothes'
+    
   } else if (temps < 0 && hums < 80) {
-    conditions.innerHTML = `
-      <h6>Freezing & Dry</h6>
-      <p><strong>Effect: </strong>Chapped skin and increased illness risk</p>
-      <p><strong>Solution: </strong>Use lip balm and stay covered</p>
-    `
+    
+     title = 'Freezing & Dry'
+      Effect = 'Chapped skin and increased illness risk'
+      Solution = 'Use lip balm and stay covered'
+    
   } else {
-    conditions.innerHTML = `
-      <h6>Moderate Weather</h6>
-      <p><strong>Effect: </strong>Normal weather conditions</p>
-      <p><strong>Solution: </strong>Dress appropriately for the temperature</p>
-    `
+    
+      title = 'Moderate Weather'
+      Effect = 'Normal weather conditions'
+      Solution = 'Dress appropriately for the temperature'
+    
   }
+
+  conditions.innerHTML = `
+      <h6>${title}</h6>
+      <p><strong>Effect: </strong>${Effect}</p>
+      <p><strong>Solution: </strong>${Solution}</p>
+    `
+
 }
 
 async function getWeatherInfo() {
@@ -189,13 +199,11 @@ async function getWeatherInfo() {
       ]
 
       // Display the information of the 5 next days
-      
       const fiveDayForecast = foreResponse.list.filter((item) => {
         const midnight = item.dt_txt.includes('12:00:00')
         return midnight
       })
 
-      
       // Using the forEach method to display the result in a specific tag based on the index
       foreCard.forEach((card, index) => {
         const dayInfo = fiveDayForecast[index]
@@ -237,28 +245,19 @@ async function getWeatherInfo() {
     const currentDate = targetDate.getDate()
     const currentMonth = targetDate.getUTCMonth()
     const currentYear = targetDate.getFullYear()
-    console.log(currentMinute)
-    console.log(
-      'this is the date',
-      currentDate,
-      currentMonth,
-      currentYear,
-      currentHour,
-      currentMinute
-    )
+
   } catch (error) {
     console.log(error.message)
+    alert(error.message)
     errorDisplay.style.display = 'block'
     weatherInfo.style.display = 'none'
   }
 }
 
-
 searchBtn.addEventListener('click', getWeatherInfo)
 input.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') getWeatherInfo()
 })
-
 
 window.addEventListener('DOMContentLoaded', () => {
   const saveCity = localStorage.getItem('LastSearchCity')
