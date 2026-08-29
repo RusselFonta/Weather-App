@@ -110,17 +110,16 @@ async function weather_info() {
   const forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${Apikey}`;
 
   try {
-    const data = await fetch(apiurl);
-    const forecastdata = await fetch(forecast);
+    // fetching both forecast and weather data simultaneously
+    const[data , forecastdata] = await Promise.all([fetch(apiurl) , fetch(forecast)])
 
     //throw an error if an error occured during the status
     if (!data.ok || !forecastdata.ok) {
       throw new Error(`Response status: ${data.status}`);
     }
 
-    // convertion of the raw data to a readable and exploitable form
-    const response = await data.json();
-    const foreresponse = await forecastdata.json();
+    //extraction the json form of both response simultaneously
+   const[ response, foreresponse] = await Promise.all([ data.json() , forecastdata.json()])
 
     SaveInformation(response.name)
 
