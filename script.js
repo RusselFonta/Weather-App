@@ -55,15 +55,19 @@ function environmentalRange(temps, hums) {
     Effect = "Hard to breathe, can trigger bad asthma attacks and allergies";
     Solution = "Rest and do not work too hard (avoid running or sports)";
   } else if (temps >= 20 && temps <= 25 && hums >= 30 && hums <= 50) {
-    title = "Perfect Comfort</h6";
+    title = "Perfect Comfort";
     Effect = "Best condition for the body";
     Solution = "Stay active (walk, exercise, and spend time outside)";
+  } else if (temps >= 0 && temps < 10 && hums >= 80) {
+    title = "Cold & Saturated";
+    Effect = "Increased risk of indoor mold, damp bones, and heavy shivering";
+    Solution = "Turn on indoor heating and use a dehumidifier";
   } else if (temps >= 10 && temps <= 19 && hums > 30) {
     title = "Cool & Damp";
     Effect = "Joint aches and allergies";
     Solution = "Keep warm and air out rooms briefly";
   } else if (temps >= 10 && temps <= 19 && hums < 30) {
-    title = "<h6>Cool & Dry</h6>";
+    title = "Cool & Dry";
     Effect = "Dry skin and static shocks";
     Solution = "Moisturize your skin and drink water";
   } else if (temps < 0 && hums >= 80) {
@@ -94,8 +98,8 @@ async function getWeatherInfo() {
     return;
   }
 
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=en&appid=${apiKey}`;
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
 
   try {
     // Fetching both forecast and weather data simultaneously
@@ -118,13 +122,15 @@ async function getWeatherInfo() {
     console.log(response);
     saveInformation(response.name);
 
-    //Displaying the sunset time 
+    //Displaying the sunset time
     const sunsetTime = response.sys.sunset * 1000;
     const sunsetDate = new Date(sunsetTime);
-    const sunsetMoment = `${sunsetDate.getUTCHours()} : ${sunsetDate.getUTCMinutes()}`
+    const sunsetMoment = `${String(sunsetDate.getUTCHours()).padStart(2, "0")} : ${String(sunsetDate.getUTCMinutes()).padStart(2, "0")}`;
     console.log(sunsetMoment);
 
     const apiTemperature = response.main.temp;
+    temperature.textContent = `${Math.round(apiTemperature)} °C`
+    console.log(apiTemperature)
     const apiHumidity = response.main.humidity;
     const apiWind = response.wind.speed;
     const apiDescription = response.weather[0].description;
@@ -135,9 +141,24 @@ async function getWeatherInfo() {
     icons.src = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
     icons.style.display = "block";
 
-    const operate = Math.round(apiTemperature - 273.15);
 
-    temperature.textContent = `${operate} °C`;
+    let isCelsius = true
+    const TemperatureConversion = () => {
+      if(isCelsius){
+        temperature.textContent = `${Math.round(apiTemperature)} °C`
+        
+      }else{
+        const toFahrenheit = (apiTemperature * 1.8) + 32
+        temperature.textContent = `${Math.round(toFahrenheit)} °F`
+      }
+    }
+
+    temperature.addEventListener('click',() =>{
+      isCelsius = !isCelsius
+      TemperatureConversion()
+    })
+
+    
     wind.textContent = `${apiWind} m/s`;
     humidity.textContent = `${apiHumidity} %`;
     actualLocation.textContent = `${response.name} ${response.sys.country}`;
@@ -187,7 +208,7 @@ async function getWeatherInfo() {
         if (dayInfo) {
           const forecastDate = (dayInfo.dt + foreResponse.city.timezone) * 1000;
           const targetForecastDate = new Date(forecastDate);
-          const tempCelsius = Math.round(dayInfo.main.temp - 273.15);
+          const tempCelsius = Math.round(dayInfo.main.temp);
           const forecastIcon = dayInfo.weather[0].icon;
           const castHum = dayInfo.main.humidity;
           const desc = dayInfo.weather[0].description;
@@ -215,7 +236,7 @@ async function getWeatherInfo() {
     const currentHour = targetDate.getUTCHours();
 
     changeBackground(currentHour);
-    environmentalRange(operate, apiHumidity);
+    environmentalRange(apiTemperature, apiHumidity);
 
     const currentMinute = targetDate.getUTCMinutes();
     const currentDate = targetDate.getDate();
