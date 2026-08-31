@@ -5,7 +5,7 @@ const apiKey = "ca773f218b34e0fb832b3c84dd037899";
 const temperature = document.querySelector(".temperature");
 const humidity = document.querySelector(".humidity");
 const wind = document.querySelector(".wind-speed");
-const ultraviolet = document.querySelector(".uv-light");
+const SunSet = document.querySelector(".sunset");
 const weatherDescription = document.querySelector(".weather-descript");
 const icons = document.querySelector(".weather-icon");
 const actualLocation = document.querySelector(".location-name");
@@ -118,6 +118,7 @@ async function getWeatherInfo() {
     console.log(response);
     saveInformation(response.name);
 
+    //Displaying the sunset time 
     const sunsetTime = response.sys.sunset * 1000;
     const sunsetDate = new Date(sunsetTime);
     const sunsetMoment = `${sunsetDate.getUTCHours()} : ${sunsetDate.getUTCMinutes()}`
@@ -140,7 +141,7 @@ async function getWeatherInfo() {
     wind.textContent = `${apiWind} m/s`;
     humidity.textContent = `${apiHumidity} %`;
     actualLocation.textContent = `${response.name} ${response.sys.country}`;
-    ultraviolet.textContent = apisunset;
+    SunSet.textContent = sunsetMoment;
     weatherDescription.textContent = apiDescription;
 
     weatherInfo.style.display = "block";
