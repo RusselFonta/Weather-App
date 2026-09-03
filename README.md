@@ -86,7 +86,7 @@ cd Weather-App
  ## 🚀 Future Improvements
 
 - **Satellite Data Integration:** Fetching real-time weather and cloud coverage parameters sourced directly from OpenWeather's satellite feeds.
-**Auto-Location:** Use the browser's Geolocation API to automatically load the user's local weather on startup.
+- **Auto-Location:** Use the browser's Geolocation API to automatically load the user's local weather on startup.
 - **Search History UI:** Add clickable buttons for recently searched cities saved in `localStorage`.
 - **Weather Charts:** Integrate a simple library like Chart.js to display 5-day temperature trends visually.
 

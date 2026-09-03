@@ -14,6 +14,8 @@ const weatherInfo = document.querySelector(".weather-box");
 const actualTime = document.querySelector(".actual-date");
 const foreCard = document.querySelectorAll(".first-day");
 const conditions = document.querySelector(".enviromental-condition");
+let apiTemperature = 0;
+let isCelsius = true
 
 // Function to persist refreshing
 const saveInformation = (city) => {
@@ -90,18 +92,22 @@ function environmentalRange(temps, hums) {
       <p><strong>Solution: </strong>${Solution}</p>
     `;
 }
-let apiTemperature = 0;
-let isCelsius = true;
+
+
     const TemperatureConversion = () => {
       if(isCelsius){
         temperature.textContent = `${Math.round(apiTemperature)} °C`
         
       }else{
-        const toFahrenheit = (apiTemperature * 1.8) + 32
+        const toFahrenheit = ( apiTemperature* 1.8) + 32
         temperature.textContent = `${Math.round(toFahrenheit)} °F`
       }
     }
 
+    temperature.addEventListener('click',() =>{
+      isCelsius = !isCelsius
+      TemperatureConversion()
+    })
 
 async function getWeatherInfo() {
   const city = input.value;
@@ -140,9 +146,11 @@ async function getWeatherInfo() {
     const sunsetMoment = `${String(sunsetDate.getUTCHours()).padStart(2, "0")} : ${String(sunsetDate.getUTCMinutes()).padStart(2, "0")}`;
     console.log(sunsetMoment);
 
-    const apiTemperature = response.main.temp;
+     apiTemperature = response.main.temp;
     temperature.textContent = `${Math.round(apiTemperature)} °C`
-    console.log(apiTemperature)
+
+    TemperatureConversion()
+
     const apiHumidity = response.main.humidity;
     const apiWind = response.wind.speed;
     const apiDescription = response.weather[0].description;
@@ -152,8 +160,7 @@ async function getWeatherInfo() {
     // Display the icon found in the weather array
     icons.src = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
     icons.style.display = "block";
-
-
+    
     wind.textContent = `${apiWind} m/s`;
     humidity.textContent = `${apiHumidity} %`;
     actualLocation.textContent = `${response.name} ${response.sys.country}`;
