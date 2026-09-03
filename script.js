@@ -40,8 +40,8 @@ function environmentalRange(temps, hums) {
   let Solution = "";
   if (temps > 35 && hums > 60) {
     title = "Very Hot & Sticky";
-    Effect: "Painful muscle cramps, heat stroke, and tiredness";
-    Solution: "Drink a lot of water and wet your skin with a damp towel";
+    Effect = "Painful muscle cramps, heat stroke, and tiredness";
+    Solution = "Drink a lot of water and wet your skin with a damp towel";
   } else if (temps > 35 && hums < 30) {
     title = "Very Hot & Dry";
     Effect = "Fast dehydration, headaches, and fainting";
@@ -90,6 +90,18 @@ function environmentalRange(temps, hums) {
       <p><strong>Solution: </strong>${Solution}</p>
     `;
 }
+let apiTemperature = 0;
+let isCelsius = true;
+    const TemperatureConversion = () => {
+      if(isCelsius){
+        temperature.textContent = `${Math.round(apiTemperature)} °C`
+        
+      }else{
+        const toFahrenheit = (apiTemperature * 1.8) + 32
+        temperature.textContent = `${Math.round(toFahrenheit)} °F`
+      }
+    }
+
 
 async function getWeatherInfo() {
   const city = input.value;
@@ -142,23 +154,6 @@ async function getWeatherInfo() {
     icons.style.display = "block";
 
 
-    let isCelsius = true
-    const TemperatureConversion = () => {
-      if(isCelsius){
-        temperature.textContent = `${Math.round(apiTemperature)} °C`
-        
-      }else{
-        const toFahrenheit = (apiTemperature * 1.8) + 32
-        temperature.textContent = `${Math.round(toFahrenheit)} °F`
-      }
-    }
-
-    temperature.addEventListener('click',() =>{
-      isCelsius = !isCelsius
-      TemperatureConversion()
-    })
-
-    
     wind.textContent = `${apiWind} m/s`;
     humidity.textContent = `${apiHumidity} %`;
     actualLocation.textContent = `${response.name} ${response.sys.country}`;

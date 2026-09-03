@@ -166,7 +166,6 @@ body[data-time="night"]::before {
   margin-top: 19px;
   width: 400px;
   height: 120px;
-  border: 1px solid;
   padding-left: 10px;
 }
 
@@ -197,7 +196,6 @@ body[data-time="night"]::before {
   font-size: 34px;
   width: auto;
   color: white;
-  border: 1px solid;
 }
 
 .weather-descript {
@@ -220,7 +218,6 @@ body[data-time="night"]::before {
   font-size: small;
   font-weight: 10;
   align-self: center;
-  border: 1px solid red;
 }
 
 .humidity-cart {
