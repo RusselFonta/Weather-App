@@ -84,7 +84,6 @@ body[data-time="night"]::before {
     rgba(0 0 0 / 15%)
   );
   backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -238,7 +237,6 @@ body[data-time="night"]::before {
   overflow-x: auto;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
-  -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: rgba(255 255 255 / 40%) transparent;
   margin-top: 16px;
@@ -282,10 +280,12 @@ body[data-time="night"]::before {
   height: 140px;
   object-fit: contain;
   margin-bottom: 20px;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 4px 12px rgb(0 0 0 / 20%));
 }
 
 .error-message {
-  color: #ffffff;
+  color: #fff;
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -293,7 +293,7 @@ body[data-time="night"]::before {
 }
 
 .error-text {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgb(255 255 255 / 85%);
   font-size: 14px;
   line-height: 1.5;
   max-width: 320px;
