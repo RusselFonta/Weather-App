@@ -137,14 +137,12 @@ async function getWeatherInfo() {
       forecastData.json(),
     ]);
 
-    console.log(response);
     saveInformation(response.name);
 
     //Displaying the sunset time
     const sunsetTime = response.sys.sunset * 1000;
     const sunsetDate = new Date(sunsetTime);
     const sunsetMoment = `${String(sunsetDate.getUTCHours()).padStart(2, "0")} : ${String(sunsetDate.getUTCMinutes()).padStart(2, "0")}`;
-    console.log(sunsetMoment);
 
      apiTemperature = response.main.temp;
     temperature.textContent = `${Math.round(apiTemperature)} °C`

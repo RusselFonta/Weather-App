@@ -91,6 +91,7 @@ cd Weather-App
 - **Weather Charts:** Integrate a simple library like Chart.js to display 5-day temperature trends visually.
 
 ---
+
 ## 👨🏽‍💻 Author
 
 **Russel Fonta Fadil**  
