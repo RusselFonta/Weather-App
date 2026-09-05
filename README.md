@@ -24,12 +24,12 @@ Many online weather platforms are slow to load and visually overwhelmed with com
 
 ## 🛠️ Tech Stack
 
-**Technologies Used:**   
-- **HTML5:** For semantic page structuring and building the interactive search interface. 
+**Technologies Used:**
+- **HTML5:** For semantic page structuring and building the interactive search interface.
 - **CSS3:** For a modern, responsive, and clean user interface design.
-- **JavaScript:** For capturing search events, executing DOM manipulation, and handling asynchronous API requests. 
+- **JavaScript:** For capturing search events, executing DOM manipulation, and handling asynchronous API requests.
 
-**Third-party Tools & APIs:** 
+**Third-party Tools & APIs:**
 - **Weather REST API (OpenWeatherMap):** Endpoint used to fetch and stream live, real-time meteorological data based on user input.
 
 
@@ -54,7 +54,7 @@ Many online weather platforms are slow to load and visually overwhelmed with com
 
 To clone and run this project locally, execute the following commands in your terminal:
 
-```bash
+~~~bash
 # Clone the repository
 git clone https://github.com/RusselFonta/Weather-App.git
 
@@ -62,8 +62,8 @@ git clone https://github.com/RusselFonta/Weather-App.git
 cd Weather-App
 
 # Switch Branch to feature/Weather_App if your are on the main branch
- git checkout feature/Weather_App
-```
+git checkout feature/Weather_App
+~~~
 
 ---
 
@@ -83,7 +83,7 @@ cd Weather-App
 
 ---
 
- ## 🚀 Future Improvements
+## 🚀 Future Improvements
 
 - **Satellite Data Integration:** Fetching real-time weather and cloud coverage parameters sourced directly from OpenWeather's satellite feeds.
 - **Auto-Location:** Use the browser's Geolocation API to automatically load the user's local weather on startup.
@@ -94,10 +94,9 @@ cd Weather-App
 
 ## 👨🏽‍💻 Author
 
-**Russel Fonta Fadil**  
-*Junior Fullstack Developer*  
+**Russel Fonta Fadil**
+*Junior Fullstack Developer*
 
-- 📩 **Email:** fontawestbrook99@gmail.com  
-- 🌍 **Location:** Cameroon (Open to remote opportunities)  
+- 📩 **Email:** fontawestbrook99@gmail.com
+- 🌍 **Location:** Cameroon (Open to remote opportunities)
 - 💼 **GitHub:** [RusselFonta](https://github.com/RusselFonta)
-
