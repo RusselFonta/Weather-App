@@ -247,7 +247,7 @@ input.addEventListener("keypress", (e) => {
 window.addEventListener("DOMContentLoaded", () => {
   const saveCity = localStorage.getItem("LastSearchCity");
   if (saveCity) {
-    input.value = saveCity;
+    input.value = saveCity || "Yaounde";
     getWeatherInfo();
   }
 });
