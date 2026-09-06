@@ -1,153 +1,153 @@
 // Initialization of variables
-const input = document.querySelector(".search-city");
-const searchBtn = document.querySelector(".search-btn");
-const apiKey = "OPENWEATHER_API_KEY";
-const temperature = document.querySelector(".temperature");
-const humidity = document.querySelector(".humidity");
-const wind = document.querySelector(".wind-speed");
-const SunSet = document.querySelector(".sunset");
-const weatherDescription = document.querySelector(".weather-descript");
-const icons = document.querySelector(".weather-icon");
-const actualLocation = document.querySelector(".location-name");
-const errorDisplay = document.querySelector(".error-part");
-const weatherInfo = document.querySelector(".weather-box");
-const actualTime = document.querySelector(".actual-date");
-const foreCard = document.querySelectorAll(".first-day");
-const conditions = document.querySelector(".enviromental-condition");
+const input = document.querySelector('.search-city')
+const searchBtn = document.querySelector('.search-btn')
+const apiKey = 'OPENWEATHER_API_KEY'
+const temperature = document.querySelector('.temperature')
+const humidity = document.querySelector('.humidity')
+const wind = document.querySelector('.wind-speed')
+const SunSet = document.querySelector('.sunset')
+const weatherDescription = document.querySelector('.weather-descript')
+const icons = document.querySelector('.weather-icon')
+const actualLocation = document.querySelector('.location-name')
+const errorDisplay = document.querySelector('.error-part')
+const weatherInfo = document.querySelector('.weather-box')
+const actualTime = document.querySelector('.actual-date')
+const foreCard = document.querySelectorAll('.first-day')
+const conditions = document.querySelector('.enviromental-condition')
 
-let apiTemperature = 0;
-let isCelsius = true;
+let apiTemperature = 0
+let isCelsius = true
 
 // Function to persist refreshing
 const saveInformation = (city) => {
-  if (city) localStorage.setItem("LastSearchCity", city);
-};
+  if (city) localStorage.setItem('LastSearchCity', city)
+}
 
 // Change background image based on time
-function changeBackground(time) {
+function changeBackground (time) {
   if (time >= 6 && time < 12) {
-    document.body.dataset.time = "morning";
+    document.body.dataset.time = 'morning'
   } else if (time >= 12 && time < 18) {
-    document.body.dataset.time = "afternoon";
+    document.body.dataset.time = 'afternoon'
   } else if (time >= 18 && time < 23) {
-    document.body.dataset.time = "evening";
+    document.body.dataset.time = 'evening'
   } else {
-    document.body.dataset.time = "night";
+    document.body.dataset.time = 'night'
   }
 }
 
 // Display information on weather risk based on humidity and temperature
-function environmentalRange(temps, hums) {
-  let title = "";
-  let Effect = "";
-  let Solution = "";
+function environmentalRange (temps, hums) {
+  let title = ''
+  let Effect = ''
+  let Solution = ''
 
   if (temps > 35 && hums > 60) {
-    title = "Very Hot & Sticky";
-    Effect = "Painful muscle cramps, heat stroke, and tiredness";
-    Solution = "Drink a lot of water and wet your skin with a damp towel";
+    title = 'Very Hot & Sticky'
+    Effect = 'Painful muscle cramps, heat stroke, and tiredness'
+    Solution = 'Drink a lot of water and wet your skin with a damp towel'
   } else if (temps > 35 && hums < 30) {
-    title = "Very Hot & Dry";
-    Effect = "Fast dehydration, headaches, and fainting";
-    Solution = "Drink water before you feel thirsty";
+    title = 'Very Hot & Dry'
+    Effect = 'Fast dehydration, headaches, and fainting'
+    Solution = 'Drink water before you feel thirsty'
   } else if (temps > 26 && temps <= 34 && hums > 70) {
-    title = "Warm & Sticky";
-    Effect = "Hard to cool down";
-    Solution = "Use fans and wear light clothes";
+    title = 'Warm & Sticky'
+    Effect = 'Hard to cool down'
+    Solution = 'Use fans and wear light clothes'
   } else if (temps >= 25 && temps <= 35 && hums > 30) {
-    title = "Warm & Muggy";
-    Effect = "Hard to breathe, can trigger bad asthma attacks and allergies";
-    Solution = "Rest and do not work too hard (avoid running or sports)";
+    title = 'Warm & Muggy'
+    Effect = 'Hard to breathe, can trigger bad asthma attacks and allergies'
+    Solution = 'Rest and do not work too hard (avoid running or sports)'
   } else if (temps >= 20 && temps <= 25 && hums >= 30 && hums <= 50) {
-    title = "Perfect Comfort";
-    Effect = "Best condition for the body";
-    Solution = "Stay active (walk, exercise, and spend time outside)";
+    title = 'Perfect Comfort'
+    Effect = 'Best condition for the body'
+    Solution = 'Stay active (walk, exercise, and spend time outside)'
   } else if (temps >= 0 && temps < 10 && hums >= 80) {
-    title = "Cold & Saturated";
-    Effect = "Increased risk of indoor mold, damp bones, and heavy shivering";
-    Solution = "Turn on indoor heating and use a dehumidifier";
+    title = 'Cold & Saturated'
+    Effect = 'Increased risk of indoor mold, damp bones, and heavy shivering'
+    Solution = 'Turn on indoor heating and use a dehumidifier'
   } else if (temps >= 10 && temps <= 19 && hums > 30) {
-    title = "Cool & Damp";
-    Effect = "Joint aches and allergies";
-    Solution = "Keep warm and air out rooms briefly";
+    title = 'Cool & Damp'
+    Effect = 'Joint aches and allergies'
+    Solution = 'Keep warm and air out rooms briefly'
   } else if (temps >= 10 && temps <= 19 && hums < 30) {
-    title = "Cool & Dry";
-    Effect = "Dry skin and static shocks";
-    Solution = "Moisturize your skin and drink water";
+    title = 'Cool & Dry'
+    Effect = 'Dry skin and static shocks'
+    Solution = 'Moisturize your skin and drink water'
   } else if (temps < 0 && hums >= 80) {
-    title = "Freezing & Wet";
-    Effect = "Frostbite and hypothermia";
-    Solution = "Wear many layers of warm clothes";
+    title = 'Freezing & Wet'
+    Effect = 'Frostbite and hypothermia'
+    Solution = 'Wear many layers of warm clothes'
   } else if (temps < 0 && hums < 80) {
-    title = "Freezing & Dry";
-    Effect = "Chapped skin and increased illness risk";
-    Solution = "Use lip balm and stay covered";
+    title = 'Freezing & Dry'
+    Effect = 'Chapped skin and increased illness risk'
+    Solution = 'Use lip balm and stay covered'
   } else {
-    title = "Moderate Weather";
-    Effect = "Normal weather conditions";
-    Solution = "Dress appropriately for the temperature";
+    title = 'Moderate Weather'
+    Effect = 'Normal weather conditions'
+    Solution = 'Dress appropriately for the temperature'
   }
 
   conditions.innerHTML = `
     <h6>${title}</h6>
     <p><strong>Effect: </strong>${Effect}</p>
     <p><strong>Solution: </strong>${Solution}</p>
-  `;
+  `
 }
 
 const TemperatureConversion = () => {
   if (isCelsius) {
-    temperature.textContent = `${Math.round(apiTemperature)} °C`;
+    temperature.textContent = `${Math.round(apiTemperature)} °C`
   } else {
-    const toFahrenheit = apiTemperature * 1.8 + 32;
-    temperature.textContent = `${Math.round(toFahrenheit)} °F`;
+    const toFahrenheit = apiTemperature * 1.8 + 32
+    temperature.textContent = `${Math.round(toFahrenheit)} °F`
   }
-};
+}
 
-temperature.addEventListener("click", () => {
-  isCelsius = !isCelsius;
-  TemperatureConversion();
-});
+temperature.addEventListener('click', () => {
+  isCelsius = !isCelsius
+  TemperatureConversion()
+})
 
 // Standalone Helper: Formats Date & Renders 5-Day Forecast cleanly
-function updateDateTimeAndForecast(targetDate, foreResponse) {
+function updateDateTimeAndForecast (targetDate, foreResponse) {
   const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday'
+  ]
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
 
   // Filter 5-day forecast entries
   const fiveDayForecast = foreResponse.list.filter((item) =>
-    item.dt_txt.includes("12:00:00"),
-  );
+    item.dt_txt.includes('12:00:00')
+  )
 
   foreCard.forEach((card, index) => {
-    const dayInfo = fiveDayForecast[index];
+    const dayInfo = fiveDayForecast[index]
     if (dayInfo) {
-      const forecastDateMs = (dayInfo.dt + foreResponse.city.timezone) * 1000;
-      const targetForecastDate = new Date(forecastDateMs);
-      const tempCelsius = Math.round(dayInfo.main.temp);
-      const forecastIcon = dayInfo.weather[0].icon;
-      const desc = dayInfo.weather[0].description;
+      const forecastDateMs = (dayInfo.dt + foreResponse.city.timezone) * 1000
+      const targetForecastDate = new Date(forecastDateMs)
+      const tempCelsius = Math.round(dayInfo.main.temp)
+      const forecastIcon = dayInfo.weather[0].icon
+      const desc = dayInfo.weather[0].description
 
       card.innerHTML = `
         <h4>${days[targetForecastDate.getUTCDay()]}</h4>
@@ -155,99 +155,99 @@ function updateDateTimeAndForecast(targetDate, foreResponse) {
         <img src='https://openweathermap.org/img/wn/${forecastIcon}@2x.png' alt='${desc}' title='${desc}'>
         <p class='forecast-temp'>${tempCelsius}°C</p>
         <p class='forecast-hum'>${dayInfo.main.humidity}%</p>
-      `;
-      card.style.display = "block";
+      `
+      card.style.display = 'block'
     } else {
-      card.style.display = "none";
+      card.style.display = 'none'
     }
-  });
+  })
 
   // Pure UTC Date Formatting for target location
-  const hour = String(targetDate.getUTCHours()).padStart(2, "0");
-  const minute = String(targetDate.getUTCMinutes()).padStart(2, "0");
-  return `${days[targetDate.getUTCDay()]} ${targetDate.getUTCDate()} ${months[targetDate.getUTCMonth()]} ${targetDate.getUTCFullYear()} ${hour}:${minute}`;
+  const hour = String(targetDate.getUTCHours()).padStart(2, '0')
+  const minute = String(targetDate.getUTCMinutes()).padStart(2, '0')
+  return `${days[targetDate.getUTCDay()]} ${targetDate.getUTCDate()} ${months[targetDate.getUTCMonth()]} ${targetDate.getUTCFullYear()} ${hour}:${minute}`
 }
 
-async function getWeatherInfo() {
-  const city = input.value.trim();
+async function getWeatherInfo () {
+  const city = input.value.trim()
   if (!city) {
-    alert("ERROR: enter a city name to search");
-    return;
+    alert('ERROR: enter a city name to search')
+    return
   }
 
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=en&appid=${apiKey}`;
-  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=en&appid=${apiKey}`
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`
 
   try {
     const [data, forecastData] = await Promise.all([
       fetch(apiUrl),
-      fetch(forecastUrl),
-    ]);
+      fetch(forecastUrl)
+    ])
 
     if (!data.ok || !forecastData.ok) {
-      throw new Error(`Response status: ${data.status}`);
+      throw new Error(`Response status: ${data.status}`)
     }
 
     const [response, foreResponse] = await Promise.all([
       data.json(),
-      forecastData.json(),
-    ]);
+      forecastData.json()
+    ])
 
-    saveInformation(response.name);
+    saveInformation(response.name)
 
     // Calculate Sunset in Target City Timezone
-    const sunsetTimeMs = (response.sys.sunset + response.timezone) * 1000;
-    const sunsetDate = new Date(sunsetTimeMs);
-    const sunsetMoment = `${String(sunsetDate.getUTCHours()).padStart(2, "0")}:${String(sunsetDate.getUTCMinutes()).padStart(2, "0")}`;
+    const sunsetTimeMs = (response.sys.sunset + response.timezone) * 1000
+    const sunsetDate = new Date(sunsetTimeMs)
+    const sunsetMoment = `${String(sunsetDate.getUTCHours()).padStart(2, '0')}:${String(sunsetDate.getUTCMinutes()).padStart(2, '0')}`
 
-    apiTemperature = response.main.temp;
-    TemperatureConversion();
+    apiTemperature = response.main.temp
+    TemperatureConversion()
 
-    const apiHumidity = response.main.humidity;
-    const apiWind = response.wind.speed;
-    const apiDescription = response.weather[0].description;
-    const weatherIcon = response.weather[0].icon;
+    const apiHumidity = response.main.humidity
+    const apiWind = response.wind.speed
+    const apiDescription = response.weather[0].description
+    const weatherIcon = response.weather[0].icon
 
-    icons.src = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-    icons.style.display = "block";
+    icons.src = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`
+    icons.style.display = 'block'
 
-    wind.textContent = `${apiWind} m/s`;
-    humidity.textContent = `${apiHumidity} %`;
-    actualLocation.textContent = `${response.name}, ${response.sys.country}`;
-    SunSet.textContent = sunsetMoment;
-    weatherDescription.textContent = apiDescription;
+    wind.textContent = `${apiWind} m/s`
+    humidity.textContent = `${apiHumidity} %`
+    actualLocation.textContent = `${response.name}, ${response.sys.country}`
+    SunSet.textContent = sunsetMoment
+    weatherDescription.textContent = apiDescription
 
-    weatherInfo.style.display = "block";
-    errorDisplay.style.display = "none";
+    weatherInfo.style.display = 'block'
+    errorDisplay.style.display = 'none'
 
     // Target city local time calculation
-    const localTimeMs = (response.dt + response.timezone) * 1000;
-    const targetDate = new Date(localTimeMs);
+    const localTimeMs = (response.dt + response.timezone) * 1000
+    const targetDate = new Date(localTimeMs)
 
     // Render formatted date/time string and update background
     actualTime.textContent = updateDateTimeAndForecast(
       targetDate,
-      foreResponse,
-    );
-    changeBackground(targetDate.getUTCHours());
-    environmentalRange(apiTemperature, apiHumidity);
+      foreResponse
+    )
+    changeBackground(targetDate.getUTCHours())
+    environmentalRange(apiTemperature, apiHumidity)
   } catch (error) {
-    alert(error.message);
-    errorDisplay.style.display = "block";
-    weatherInfo.style.display = "none";
+    alert(error.message)
+    errorDisplay.style.display = 'block'
+    weatherInfo.style.display = 'none'
   }
 }
 
 // Event Listeners
-searchBtn.addEventListener("click", getWeatherInfo);
-input.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") getWeatherInfo();
-});
+searchBtn.addEventListener('click', getWeatherInfo)
+input.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') getWeatherInfo()
+})
 
-window.addEventListener("DOMContentLoaded", () => {
-  const saveCity = localStorage.getItem("LastSearchCity");
+window.addEventListener('DOMContentLoaded', () => {
+  const saveCity = localStorage.getItem('LastSearchCity')
   if (saveCity) {
-    input.value = saveCity || "Yaounde";
-    getWeatherInfo();
+    input.value = saveCity || 'Yaounde'
+    getWeatherInfo()
   }
-});
+})
