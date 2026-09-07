@@ -46,34 +46,34 @@ function environmentalRange (temps, hums) {
     title = 'Very Hot & Sticky'
     Effect = 'Painful muscle cramps, heat stroke, and tiredness'
     Solution = 'Drink a lot of water and wet your skin with a damp towel'
-  } else if (temps > 35 && hums < 30) {
+  } else if (temps > 35 && hums <= 60) {
     title = 'Very Hot & Dry'
     Effect = 'Fast dehydration, headaches, and fainting'
     Solution = 'Drink water before you feel thirsty'
-  } else if (temps > 26 && temps <= 34 && hums > 70) {
+  } else if (temps > 26 && temps <= 35 && hums > 70) {
     title = 'Warm & Sticky'
     Effect = 'Hard to cool down'
     Solution = 'Use fans and wear light clothes'
-  } else if (temps >= 25 && temps <= 35 && hums > 30) {
+  } else if (temps >= 25 && temps <= 35 && hums <= 70) {
     title = 'Warm & Muggy'
     Effect = 'Hard to breathe, can trigger bad asthma attacks and allergies'
     Solution = 'Rest and do not work too hard (avoid running or sports)'
-  } else if (temps >= 20 && temps <= 25 && hums >= 30 && hums <= 50) {
+  } else if (temps >= 20 && temps < 25 && hums >= 30) {
     title = 'Perfect Comfort'
     Effect = 'Best condition for the body'
     Solution = 'Stay active (walk, exercise, and spend time outside)'
-  } else if (temps >= 0 && temps < 10 && hums >= 80) {
-    title = 'Cold & Saturated'
-    Effect = 'Increased risk of indoor mold, damp bones, and heavy shivering'
-    Solution = 'Turn on indoor heating and use a dehumidifier'
-  } else if (temps >= 10 && temps <= 19 && hums > 30) {
+  } else if (temps >= 10 && temps < 20 && hums >= 30) {
     title = 'Cool & Damp'
     Effect = 'Joint aches and allergies'
     Solution = 'Keep warm and air out rooms briefly'
-  } else if (temps >= 10 && temps <= 19 && hums < 30) {
+  } else if (temps >= 10 && temps < 20 && hums < 30) {
     title = 'Cool & Dry'
     Effect = 'Dry skin and static shocks'
     Solution = 'Moisturize your skin and drink water'
+  } else if (temps >= 0 && temps < 10) {
+    title = 'Cold Weather'
+    Effect = 'Increased risk of indoor dampness and shivering'
+    Solution = 'Turn on indoor heating and wear warm layers'
   } else if (temps < 0 && hums >= 80) {
     title = 'Freezing & Wet'
     Effect = 'Frostbite and hypothermia'
@@ -171,12 +171,16 @@ function updateDateTimeAndForecast (targetDate, foreResponse) {
 async function getWeatherInfo () {
   const city = input.value.trim()
   if (!city) {
-    alert('ERROR: enter a city name to search')
+    if (errorDisplay) {
+      errorDisplay.textContent = 'Please enter a city name to search.'
+      errorDisplay.style.display = 'block'
+    }
     return
   }
 
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=en&appid=${apiKey}`
-  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`
+  const encodedCity = encodeURIComponent(city)
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodedCity}&units=metric&lang=en&appid=${apiKey}`
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${encodedCity}&units=metric&appid=${apiKey}`
 
   try {
     const [data, forecastData] = await Promise.all([
@@ -184,8 +188,14 @@ async function getWeatherInfo () {
       fetch(forecastUrl)
     ])
 
-    if (!data.ok || !forecastData.ok) {
-      throw new Error(`Response status: ${data.status}`)
+    if (!data.ok) {
+      if (data.status === 404) {
+        throw new Error('City not found. Please check spelling.')
+      } else if (data.status === 401) {
+        throw new Error('API key error. Please verify key configuration.')
+      } else {
+        throw new Error('Unable to retrieve weather data.')
+      }
     }
 
     const [response, foreResponse] = await Promise.all([
@@ -224,7 +234,6 @@ async function getWeatherInfo () {
     const localTimeMs = (response.dt + response.timezone) * 1000
     const targetDate = new Date(localTimeMs)
 
-    // Render formatted date/time string and update background
     actualTime.textContent = updateDateTimeAndForecast(
       targetDate,
       foreResponse
@@ -232,8 +241,10 @@ async function getWeatherInfo () {
     changeBackground(targetDate.getUTCHours())
     environmentalRange(apiTemperature, apiHumidity)
   } catch (error) {
-    alert(error.message)
-    errorDisplay.style.display = 'block'
+    if (errorDisplay) {
+      errorDisplay.textContent = error.message
+      errorDisplay.style.display = 'block'
+    }
     weatherInfo.style.display = 'none'
   }
 }
@@ -245,9 +256,7 @@ input.addEventListener('keypress', (e) => {
 })
 
 window.addEventListener('DOMContentLoaded', () => {
-  const saveCity = localStorage.getItem('LastSearchCity')
-  if (saveCity) {
-    input.value = saveCity || 'Yaounde'
-    getWeatherInfo()
-  }
+  const saveCity = localStorage.getItem('LastSearchCity') || 'Yaounde'
+  input.value = saveCity
+  getWeatherInfo()
 })
