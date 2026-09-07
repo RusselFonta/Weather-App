@@ -9,7 +9,7 @@
 }
 
 body {
-  background-image: url("asset/image/pexels-diva-23-2157852563-35333210.jpg");
+  background-image: url("asset/image/pexels-diva-23-2157852563-35333210.webp");
   transition: background-image 3s ease;
   font-family:
     Inter,
@@ -48,25 +48,25 @@ body::before {
 }
 
 body[data-time="morning"]::before {
-  background-image: url("asset/image/morning.jpg");
+  background-image: url("asset/image/morning.webp");
   opacity: 1;
   transition: opacity 0.3s ease;
 }
 
 body[data-time="afternoon"]::before {
-  background-image: url("asset/image/afternoon.jpg");
+  background-image: url("asset/image/afternoon.webp");
   opacity: 1;
   transition: opacity 0.3s ease;
 }
 
 body[data-time="evening"]::before {
-  background-image: url("asset/image/evening.jpg");
+  background-image: url("asset/image/evening.webp");
   opacity: 1;
   transition: opacity 0.3s ease;
 }
 
 body[data-time="night"]::before {
-  background-image: url("asset/image/star.jpg");
+  background-image: url("asset/image/star.webp");
   opacity: 1;
   transition: opacity 0.3s ease;
 }
